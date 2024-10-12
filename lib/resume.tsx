@@ -7,12 +7,19 @@ export const DATA = {
   avatarUrl: "/avatar.jpg",
   description:
     "Aspiring front-end web developer. Creating ui components, exploring Python, interested in AI. Fan of minimalist design. Limited social media presence.",
-  summary:
-    "At the end of 2023, I quit my previous job in dental technician industry, and decided to pursue web development career. I started with front-end development (React and Next.js) and design with Tailwind Css and Shadcn Ui. At the moment, [I pursue a certificate in python with Software Development Academy](https://sdacademy.sk/kurzy/python/), [creating ui components](https://ui.aceternity.com/) and [write articles on front-end development](https://dev.to/).",
+  summary: [
+    {
+      past: "Na konci roku 2023 som sa rozhodol urobiť významný kariérny posun a opustil som svoju predchádzajúcu prácu v oblasti zubnej techniky, aby som nasledoval svoje nadšenie pre webový vývoj. Svoju cestu som začal ponorením sa do front-end vývoja, pričom som sa zameral na technológie ako React a Next.js. Aby som doplnil svoje kódovacie zručnosti, venoval som sa aj dizajnu, kde som pracoval s Tailwind CSS a Shadcn UI na vytváraní responzívnych a vizuálne príťažlivých rozhraní.",
+    },
+    {
+      present:
+        "Momentálne si rozširujem zručnosti získavaním certifikátu v [Pythone na Software Development Academy](https://sdacademy.sk/kurzy/python/), čo mi pomôže prejsť na backendový vývoj a analýzu dát. Okrem učenia sa Pythonu [píšem články o témach vo frontend vývoji](https://dev.to/), poznámky z python učenia, občas pár tipov a objevov vo web vývoji. Naďalej si prehlbujem zručnosti vo frontend-e a občas experimentujem s dizajnovaním.",
+    },
+  ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
-//  { href: "/repos", icon: Icons.github, label: "Repos" },
+    //  { href: "/repos", icon: Icons.github, label: "Repos" },
   ],
   contact: {
     email: "hello@example.com",
@@ -40,16 +47,7 @@ export const DATA = {
   },
   projects: [],
   repositories: [],
-  
 
-
-
-
-
-
-
-
-  
   projemkcts: [
     {
       title: "Bookish Retreat",
