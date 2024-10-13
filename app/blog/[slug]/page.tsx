@@ -1,8 +1,8 @@
-
 import { getBlogPosts, getPost } from "@/lib/blog";
 import { DATA } from "@/lib/resume";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -20,12 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata | undefined> {
   let post = await getPost(params.slug);
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post.metadata;
+  let { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
   let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
 
   return {
@@ -89,16 +84,34 @@ export default async function Blog({
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            {formatDate(post.metadata.publishedAt)}
-          </p>
-        </Suspense>
+
+      <div id="header" className="">
+        <div className="w-full flex flex-col justify-between items-center">
+          <h1 className="text-center font-bold text-4xl tracking-wider mb-2">
+            {post.metadata.title}
+          </h1>
+          <h2 className="text-center font-light text-xl tracking-wider">
+            {post.metadata.subtitle}
+          </h2>
+
+          <div className="flex justify-between items-center mt-2 mb-4 text-sm font-semibold">
+            <Suspense fallback={<p className="h-5" />}>
+              <p className="text-sm text-neutral-700 dark:text-neutral-400 uppercase">
+                {formatDate(post.metadata.publishedAt)}
+              </p>
+            </Suspense>
+          </div>
+
+          <Image
+            src={post.metadata.image}
+            alt={post.metadata.title}
+            width={900}
+            height={400}
+            className="rounded-2xl"
+          />
+        </div>
       </div>
+
       <article
         className="prose dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: post.source }}

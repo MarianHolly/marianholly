@@ -37,11 +37,10 @@ export default function BlogCard({ post, id }: { post: any; id: number }) {
             />
           )}
         </AnimatePresence>
-        <div className="w-full flex flex-row relative justify-start gap-4 p-2 rounded-sm">
+        <div className="w-full flex flex-row relative justify-start gap-4 p-1 rounded-sm">
           <Link className="w-full" href={`/blog/${post.slug}`}>
           <Card className="flex flex-row items-start">
-
-              <div className="min-w-32 flex flex-row items-center justify-start pl-1">
+              <div className="hidden min-w-32 sm:flex flex-row items-center justify-start pl-1">
                 <p className="text-sm font-light opacity-80">
                   {post.metadata.publishedAt && (
                     <time className="text-xs text-muted-foreground">
@@ -49,14 +48,14 @@ export default function BlogCard({ post, id }: { post: any; id: number }) {
                     </time>
                   )}
                 </p>
-              </div>
+              </div> 
 
               <div className="flex flex-col gap-1">
                 <h2 className="font-semibold leading-none">{post.metadata.title}</h2>
 
                 {post.metadata.summary && (
                   <span className="prose dark:prose-invert text-xs text-muted-foreground">
-                    {post.metadata.summary.split(" ").slice(0, 10).join(" ")}
+                    {post.metadata.summary}
                   </span>
                 )}
               </div>

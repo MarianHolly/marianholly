@@ -6,12 +6,15 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { transformerCopyButton } from '@rehype-pretty/transformers'
 
 type Metadata = {
   title: string;
+  subtitle?: string;
   publishedAt: string;
   summary: string;
   image?: string;
+  tags?: string[];
 };
 
 function getMDXFiles(dir: string) {
@@ -20,14 +23,19 @@ function getMDXFiles(dir: string) {
 
 export async function markdownToHTML(markdown: string) {
   const p = await unified()
-    .use(remarkParse)
-    .use(remarkRehype)
+  .use(remarkParse)
+  .use(remarkRehype) 
     .use(rehypePrettyCode, {
-      // https://rehype-pretty.pages.dev/#usage
       theme: {
-        light: "min-light",
-        dark: "min-dark",
+        light: "one-dark-pro",
+        dark: "one-dark-pro",
       },
+      transformers: [
+        transformerCopyButton({
+          visibility: 'always',
+          feedbackDuration: 3_000,
+        }),
+      ],
       keepBackground: false,
     })
     .use(rehypeStringify)
