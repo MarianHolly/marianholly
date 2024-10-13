@@ -1,0 +1,168 @@
+---
+title: "Object-Oriented Programming"
+subtitle: "Understanding the Pillars of OOP"
+publishedAt: "2024-10-06"
+summary: "An exploration of Object-Oriented Programming principles and their implementation in Python."
+tags: ["python"]
+---
+
+Object-Oriented Programming (OOP) is a programming paradigm that organizes software design around data, or objects, rather than functions and logic. This article delves into the core concepts of OOP and demonstrates their implementation using Python.
+
+## Introduction to Object-Oriented Programming
+
+OOP is a programming paradigm based on the concept of "objects", which can contain data and code. The object's data is in the form of fields (often known as attributes or properties), and the code is in the form of procedures (often known as methods).
+
+### Why OOP?
+
+OOP offers several advantages:
+1. Modularity
+2. Reusability
+3. Scalability
+4. Easier maintenance
+
+## The Four Pillars of OOP
+
+Object-Oriented Programming is built on four main principles:
+
+### 1. Encapsulation
+
+Encapsulation is the bundling of data and the methods that operate on that data within a single unit or object.
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # Private attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount(1000)
+account.deposit(500)
+print(account.get_balance())  # Output: 1500
+```
+
+### 2. Abstraction
+
+Abstraction is the process of hiding the complex implementation details and showing only the necessary features of an object.
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+circle = Circle(5)
+print(circle.area())  # Output: 78.5
+```
+
+### 3. Inheritance
+
+Inheritance allows a class to inherit attributes and methods from another class.
+
+<img src="/api/placeholder/600/400" alt="Inheritance Diagram" />
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} says Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return f"{self.name} says Meow!"
+
+dog = Dog("Buddy")
+cat = Cat("Whiskers")
+
+print(dog.speak())  # Output: Buddy says Woof!
+print(cat.speak())  # Output: Whiskers says Meow!
+```
+
+### 4. Polymorphism
+
+Polymorphism allows objects of different classes to be treated as objects of a common base class.
+
+```python
+def animal_sound(animal):
+    print(animal.speak())
+
+animal_sound(dog)  # Output: Buddy says Woof!
+animal_sound(cat)  # Output: Whiskers says Meow!
+```
+
+## Advanced OOP Concepts
+
+### Composition
+
+Composition is a design principle that suggests a class can refer to one or more objects of other classes as instances rather than inheriting from them.
+
+```python
+class Engine:
+    def start(self):
+        return "Engine started"
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()
+
+    def start(self):
+        return f"Car starting: {self.engine.start()}"
+
+my_car = Car()
+print(my_car.start())  # Output: Car starting: Engine started
+```
+
+### Method Overloading and Overriding
+
+Python doesn't support traditional method overloading, but we can simulate it:
+
+```python
+class Calculator:
+    def add(self, *args):
+        return sum(args)
+
+calc = Calculator()
+print(calc.add(1, 2))      # Output: 3
+print(calc.add(1, 2, 3))   # Output: 6
+```
+
+Method overriding is straightforward in Python:
+
+```python
+class Animal:
+    def make_sound(self):
+        print("Some generic animal sound")
+
+class Cat(Animal):
+    def make_sound(self):
+        print("Meow")
+
+generic_animal = Animal()
+cat = Cat()
+
+generic_animal.make_sound()  # Output: Some generic animal sound
+cat.make_sound()             # Output: Meow
+```
+
+## Conclusion
+
+Object-Oriented Programming is a powerful paradigm that provides a clear structure for programs, making it easier to maintain, modify and debug code. By understanding and applying the four pillars of OOP - encapsulation, abstraction, inheritance, and polymorphism - along with advanced concepts like composition and method overriding, you can create more efficient, flexible, and reusable code. While this article used Python for examples, these principles apply across many programming languages, forming a solid foundation for software development.
