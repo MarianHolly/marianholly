@@ -5,15 +5,13 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import BlurFade from "./ui/blur-fade";
 import { Button } from "./ui/button";
-import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { cn } from "@/lib/utils";
+import { cn, formatDate, formatDateShort } from "@/lib/utils";
+import Link from "next/link";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function BlogCard({ post, id }: { post: any; id: number }) {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  
 
   return (
     <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
@@ -39,26 +37,31 @@ export default function BlogCard({ post, id }: { post: any; id: number }) {
             />
           )}
         </AnimatePresence>
-        <div className="w-full flex flex-row relative justify-start gap-4 p-2 rounded-md">
-          <Card>
-            <div className="w-18 flex items-center justify-center pl-3 flex-row gap-3">
-            <p className="text-sm font-light opacity-75">
-                {post.metadata.publishedAt && (
-                  <time className="text-xs text-muted-foreground">{post.metadata.publishedAt}</time>
-                )}
-              </p>
-            </div>
+        <div className="w-full flex flex-row relative justify-start gap-4 p-2 rounded-sm">
+          <Link className="w-full" href={`/blog/${post.slug}`}>
+          <Card className="flex flex-row items-start">
 
-            <div className="flex flex-col gap-1">
-              <h2 className="font-semibold leading-none">{post.metadata.title}</h2>
-            
-              {post.metadata.summary && (
-                <span className="prose dark:prose-invert text-xs text-muted-foreground">
-                  {post.metadata.summary.split(" ").slice(0, 10).join(" ")}
-                </span>
-              )}
-            </div>
-          </Card>
+              <div className="min-w-32 flex flex-row items-center justify-start pl-1">
+                <p className="text-sm font-light opacity-80">
+                  {post.metadata.publishedAt && (
+                    <time className="text-xs text-muted-foreground">
+                      {formatDateShort(post.metadata.publishedAt)}
+                    </time>
+                  )}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <h2 className="font-semibold leading-none">{post.metadata.title}</h2>
+
+                {post.metadata.summary && (
+                  <span className="prose dark:prose-invert text-xs text-muted-foreground">
+                    {post.metadata.summary.split(" ").slice(0, 10).join(" ")}
+                  </span>
+                )}
+              </div>
+                </Card>
+          </Link>
         </div>
       </div>
     </BlurFade>

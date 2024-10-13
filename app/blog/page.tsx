@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import { DATA } from "@/lib/resume";
 import { getBlogPosts } from "@/lib/blog";
-import { Card } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 
 import Link from "next/link";
@@ -20,14 +19,12 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
   const item = DATA.navbar[1];
 
-  console.log(posts);
-
   return (
     <section>
       <BlurFade delay={BLUR_FADE_DELAY}>
         <Link
           href={item.href}
-          className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-12 m-2")}
+          className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-20 p-4 rounded-full")}
         >
           <item.icon className="size-44" />
         </Link>
