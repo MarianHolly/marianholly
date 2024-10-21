@@ -48,7 +48,13 @@ export default async function BlogPage() {
           return 1;
         })
         .map((post, id) => (
-          <BlogCard post={post} id={id} />
+          <BlogCard
+            id={id}
+            slug={post.slug}
+            title={post.metadata.title}
+            summary={post.metadata.summary}
+            publishedAt={post.metadata.publishedAt}
+          />
         ))}
     </section>
   );

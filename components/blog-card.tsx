@@ -2,19 +2,30 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { cn, formatDateShort } from "@/lib/utils";
 
-import BlurFade from "./ui/blur-fade";
-import { Button } from "./ui/button";
-import { cn, formatDate, formatDateShort } from "@/lib/utils";
 import Link from "next/link";
+import BlurFade from "./ui/blur-fade";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function BlogCard({ post, id }: { post: any; id: number }) {
+export default function BlogCard({
+  title,
+  summary,
+  id,
+  publishedAt,
+  slug,
+}: {
+  title: string;
+  summary: string;
+  id: number;
+  publishedAt: string;
+  slug: string;
+}) {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
+    <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={slug}>
       <div
         className="relative"
         onMouseEnter={() => setHoveredIndex(id)}
@@ -38,28 +49,28 @@ export default function BlogCard({ post, id }: { post: any; id: number }) {
           )}
         </AnimatePresence>
         <div className="w-full flex flex-row relative justify-start gap-4 p-1 rounded-sm">
-          <Link className="w-full" href={`/blog/${post.slug}`}>
-          <Card className="flex flex-row items-start">
+          <Link className="w-full" href={`/blog/${slug}`}>
+            <Card className="flex flex-row items-start">
               <div className="hidden min-w-32 sm:flex flex-row items-center justify-start pl-1">
                 <p className="text-sm font-light opacity-80">
-                  {post.metadata.publishedAt && (
+                  {publishedAt && (
                     <time className="text-xs text-muted-foreground">
-                      {formatDateShort(post.metadata.publishedAt)}
+                      {formatDateShort(publishedAt)}
                     </time>
                   )}
                 </p>
-              </div> 
+              </div>
 
               <div className="flex flex-col gap-1">
-                <h2 className="font-semibold leading-none">{post.metadata.title}</h2>
+                <h2 className="font-semibold leading-none">{title}</h2>
 
-                {post.metadata.summary && (
+                {summary && (
                   <span className="prose dark:prose-invert text-xs text-muted-foreground">
-                    {post.metadata.summary}
+                    {summary}
                   </span>
                 )}
               </div>
-                </Card>
+            </Card>
           </Link>
         </div>
       </div>

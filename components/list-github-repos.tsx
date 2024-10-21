@@ -3,48 +3,41 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { CodesandboxIcon } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { LinkPreview } from "@/components/ui/link-preview";
 import BlurFade from "./ui/blur-fade";
 import { DATA } from "@/lib/resume";
-
+import { Button } from "./ui/button";
+import { LinkPreview } from "./ui/link-preview";
+import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function GithubRepositories() {
+export default function GitHubRepoList() {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div className="space-y-12 w-full py-12">
-      {/* HEADER */}
-
-      <BlurFade delay={BLUR_FADE_DELAY * 13}>
+      <BlurFade delay={BLUR_FADE_DELAY * 8}>
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-              GitHub Repositories
+              GitHub repozitáre
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              Always Coding Something
+              neustále niečo kódujem
             </h2>
             <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Explore my coding journey through a diverse collection of projects, from small-scale
-              experiments to full-fledged applications built with Next.js, React, Tailwind CSS, and
-              Shadcn UI. Discover my passion for learning Python and game development with Pygame.
+              Preskúmaj moju cestu kódenia cez rôznorodú zbierku projektov, od malých experimentov
+              až po plnohodnotné aplikácie postavené rôznymi technologiami React, Next.js,
+              Typescript, Astro, Sanity, Contentful, Python, Django, Flask, Pygame.
             </p>
           </div>
         </div>
       </BlurFade>
 
-      {/* CONTENT */}
       <BlurFade delay={BLUR_FADE_DELAY * 14}>
         <ul className="flex flex-col gap-6">
-          {DATA.hackathons.map((project, id) => (
-            <BlurFade key={project.title + project.dates} delay={BLUR_FADE_DELAY * 15 + id * 0.05}>
+          {DATA.repositories.map((repo, id) => (
+            <BlurFade key={repo.title + repo.dates} delay={BLUR_FADE_DELAY * 15 + id * 0.05}>
               <div
                 className="relative"
                 onMouseEnter={() => setHoveredIndex(id)}
@@ -71,32 +64,29 @@ export default function GithubRepositories() {
                 <div className="w-full flex flex-row relative justify-start gap-4 p-2 rounded-md">
                   <Card>
                     <div className="w-18 flex items-center justify-center pl-3 flex-row gap-3">
-                      <Button variant="outline" size="icon">
-                        <CodesandboxIcon />
+                      <Button variant="outline" size="icon" className="rounded-full">
+                        <CodeSandboxLogoIcon />
                       </Button>
-                      <Button variant="outline" size="icon">
+                      <Button variant="outline" size="icon" className="rounded-full">
                         <GitHubLogoIcon />
                       </Button>
                     </div>
 
-                    <LinkPreview url={project.image}>
+                    <LinkPreview url={repo.image}>
                       <div className="flex flex-col gap-1">
-                        <h2 className="font-semibold leading-none">{project.title}</h2>
+                        <h2 className="font-semibold leading-none">{repo.title}</h2>
                         <p className="text-sm font-light opacity-75">
-                          {project.dates && (
-                            <time className="text-xs text-muted-foreground">{project.dates}</time>
+                          {repo.dates && (
+                            <time className="text-xs text-muted-foreground">{repo.dates}</time>
                           )}
                         </p>
-                        {project.description && (
+                        {repo.description && (
                           <span className="prose dark:prose-invert text-xs text-muted-foreground">
-                            {project.description.split(" ").slice(0, 10).join(" ")}
+                            {repo.description.split(" ").slice(0, 10).join(" ")}
                           </span>
                         )}
                       </div>
                     </LinkPreview>
-
-
-
                   </Card>
                 </div>
               </div>
@@ -104,12 +94,9 @@ export default function GithubRepositories() {
           ))}
         </ul>
       </BlurFade>
-
     </div>
   );
 }
-
-// p-1
 
 export const Card = ({
   className,

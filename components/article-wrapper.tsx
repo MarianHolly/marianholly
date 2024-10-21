@@ -1,8 +1,11 @@
 "use client";
 
 import { createContext, useState, ReactNode, useContext } from "react";
-import { Checkbox } from "./ui/checkbox";
+
 import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
+import { EyeIcon, EyeOffIcon, RotateCcwIcon } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface FilterContextType {
   filterPublished: boolean;
@@ -34,28 +37,67 @@ export default function ArticleFilterWrapper({ children }: ArticleFilterWrapperP
     setCategoryFilter("");
   };
 
+  const toggleFilter = () => {
+    setFilterPublished((prev) => !prev);
+  };
+
   return (
     <FilterContext.Provider
       value={{ filterPublished, setFilterPublished, categoryFilter, setCategoryFilter }}
     >
-      <div className="space-y-4">
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            id="published"
-            checked={filterPublished}
-            onCheckedChange={(checked) => setFilterPublished(checked as boolean)}
-          />
-          <label
-            htmlFor="published"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Show only published
-          </label>
+      <div className="w-full">
+        <div className="w-full flex flex-row justify-between">
+          <h1 className="text-3xl font-bold">Articles</h1>
+
+          <div className="flex flex-row gap-1">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={`rounded-full p-1 ${
+                    filterPublished ? "text-primary" : "text-muted-foreground"
+                  }`}
+                  onClick={toggleFilter}
+                >
+                  {filterPublished ? (
+                    <EyeIcon className="h-12 w-12" />
+                  ) : (
+                    <EyeOffIcon className="h-12 w-12" />
+                  )}
+                  <span className="sr-only">
+                    {filterPublished ? "curious about planned posts" : "only published posts"}
+                  </span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{filterPublished ? "curious about planned posts" : "only published posts"}</p>
+              </TooltipContent>
+            </Tooltip>
+
+            {/*
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className={`rounded-full p-1 ${
+                      filterPublished ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={resetFilters}
+                  >
+                    <RotateCcwIcon className="h-12 w-12" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>reset</p>
+                </TooltipContent>
+              </Tooltip>
+            */}
+          </div>
         </div>
 
-        <Button onClick={resetFilters} variant="outline" className="w-full">
-          Reset Filters
-        </Button>
+        <Separator className="my-2" />
 
         {children}
       </div>
