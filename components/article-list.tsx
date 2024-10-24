@@ -5,10 +5,10 @@ import { useFilterContext } from "./article-wrapper";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn, formatDateShort } from "@/lib/utils";
 
-import BlurFade from "./ui/blur-fade";
 import { Button } from "./ui/button";
 import { TIcons } from "./icons";
 import { Separator } from "./ui/separator";
+import BlurFade from "./ui/blur-fade";
 
 interface Article {
   slug: string;
@@ -58,30 +58,32 @@ export default function ArticleList({ articles }: ArticleListProps) {
 
   return (
     <div>
-      <div className="flex flex-row justify-end mb-4">
-        <div className="flex flex-wrap gap-1">
-          {categories.map((category) => {
-            const IconComponent = TIcons[category.toLowerCase() as keyof typeof TIcons];
-            return (
-              <Button
-                key={category}
-                variant={activeCategory === category ? "outline" : "ghost"}
-                size="icon"
-                className="rounded-full p-1 w-11 h-11"
-                onClick={() => handleCategoryClick(category)}
-              >
-                {IconComponent ? (
-                  <IconComponent className="" />
-                ) : (
-                  <span className="text-xs">{category.slice(0, 2).toUpperCase()}</span>
-                )}
-                <span className="sr-only">{category}</span>
-              </Button>
-            );
-          })}
+      <BlurFade delay={BLUR_FADE_DELAY}>
+        <div className="flex flex-row justify-end mb-4">
+          <div className="flex flex-wrap gap-1">
+            {categories.map((category) => {
+              const IconComponent = TIcons[category.toLowerCase() as keyof typeof TIcons];
+              return (
+                <Button
+                  key={category}
+                  variant={activeCategory === category ? "outline" : "ghost"}
+                  size="icon"
+                  className="rounded-full p-1 w-11 h-11"
+                  onClick={() => handleCategoryClick(category)}
+                >
+                  {IconComponent ? (
+                    <IconComponent className="" />
+                  ) : (
+                    <span className="text-xs">{category.slice(0, 2).toUpperCase()}</span>
+                  )}
+                  <span className="sr-only">{category}</span>
+                </Button>
+              );
+            })}
+          </div>
         </div>
-      </div>
         <Separator orientation="horizontal" className="h-full" />
+      </BlurFade>
 
       <ul className="space-y-2">
         {filteredArticles.map((article, id) => (
