@@ -54,7 +54,7 @@ export default function ProjectCard({
             className={`transition-opacity duration-300 ${
               isImageLoaded ? "opacity-100" : "opacity-0"
             }`}
-            onLoadingComplete={() => setIsImageLoaded(true)}
+            onLoad={() => setIsImageLoaded(true)}
           />
         )}
         {!isImageLoaded && <div className="absolute inset-0 bg-gray-200 animate-pulse" />}
