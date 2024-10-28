@@ -10,6 +10,10 @@ import RepoCard from "@/components/card-repo";
 import GitHubRepoList from "@/components/list-github-repos";
 import ProjectCard from "@/components/card-project";
 
+interface VideoPlayerProps {
+  src: string;
+}
+
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Home() {
@@ -71,12 +75,15 @@ export default function Home() {
             </div>
           </BlurFade>
           <div className="w-full flex flex-col items-center">
-          {DATA.projects.map((project, id) => (
-            <ProjectCard key={id} {...project} />
-          ))}
-
+            {DATA.projects.map((project, id) => (
+              <ProjectCard key={id} {...project} />
+            ))}
           </div>
         </div>
+      </section>
+
+      <section className="w-full mt-6 md:mt-8">
+        <VideoPlayer src="videos/screen-capture-op.mp4"  />
       </section>
 
       <section id="repositories">
@@ -103,18 +110,17 @@ export default function Home() {
             </div>
           </BlurFade>
           <div className="">
-
-          {DATA.featuredArticles.map((article, id) => (
-            <BlurFade delay={BLUR_FADE_DELAY * 10 + id * 0.05} key={article.title}>
-              <BlogCard
-                id={id}
-                slug={article.slug}
-                publishedAt={article.publishedAt}
-                summary={article.summary}
-                title={article.title}
-              />
-            </BlurFade>
-          ))}
+            {DATA.featuredArticles.map((article, id) => (
+              <BlurFade delay={BLUR_FADE_DELAY * 10 + id * 0.05} key={article.title}>
+                <BlogCard
+                  id={id}
+                  slug={article.slug}
+                  publishedAt={article.publishedAt}
+                  summary={article.summary}
+                  title={article.title}
+                />
+              </BlurFade>
+            ))}
           </div>
         </div>
       </section>
@@ -145,3 +151,25 @@ export default function Home() {
     </main>
   );
 }
+
+export function VideoPlayer({ src }: VideoPlayerProps) {
+  return (
+    <div
+      className="w-full rounded-lg overflow-hidden shadow-xl"
+      data-sentry-component="VideoPlayer"
+      data-sentry-source-file="VideoPlayer.tsx"
+    >
+      <div className="relative bg-white dark:bg-black rounded-md border-black border-l-2 border-1">
+        <video
+          src={src}
+          controls
+          autoPlay
+          muted
+          playsInline
+          className="w-full rounded-md overflow-hidden"
+        />
+      </div>
+    </div>
+  );
+}
+
