@@ -6,9 +6,10 @@ import Markdown from "react-markdown";
 import BlurFade from "@/components/ui/blur-fade";
 import BlurFadeText from "@/components/ui/blur-fade-text";
 import BlogCard from "@/components/blog-card";
-import RepoCard from "@/components/card-repo";
 import GitHubRepoList from "@/components/list-github-repos";
 import ProjectCard from "@/components/card-project";
+import { CardTitle } from "@/components/ui/card";
+import VideoPlayer2 from "@/components/card-project-v2";
 
 interface VideoPlayerProps {
   src: string;
@@ -82,9 +83,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full mt-6 md:mt-8">
-        <VideoPlayer src="videos/screen-capture-op.mp4"  />
+      <section className="w-full mt-4 md:mt-6">
+        <div className="w-full flex flex-col items-center">
+          <VideoPlayer src="videos/screen-capture-op.mp4" />
+          <div className="my-4 flex flex-col items-center justify-center gap-1 w-5/6 py-2 px-4 md:px-8
+          bg-white/80 backdrop-blur-sm rounded-lg md:backdrop-filter-none shadow-xl">
+            <CardTitle className="text-lg flex justify-between items-center">
+              Bookish Retreat
+            </CardTitle>
+            <p className="text-xs text-muted-foreground">Jan 2024 - Feb 2024</p>
+            <p className="text-sm mb-2 line-clamp-2 ">
+              This is a mock description for the project. It showcases the project's main features
+              and goals in a concise manner.
+            </p>
+          </div>
+        </div>
       </section>
+
+      <section className="w-full mt-4 md:mt-6">
+      <div className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <h2 className="text-xl font-bold mb-4">Bookish Retreat</h2>
+      <VideoPlayer src="videos/screen-capture-op.mp4" />
+    </div>
+      </section>
+
+      <section className="w-full mt-4 md:mt-6">
+                <VideoPlayer2 src="videos/screen-capture-op.mp4" />
+              </section>
 
       <section id="repositories">
         <GitHubRepoList />
@@ -159,7 +184,7 @@ export function VideoPlayer({ src }: VideoPlayerProps) {
       data-sentry-component="VideoPlayer"
       data-sentry-source-file="VideoPlayer.tsx"
     >
-      <div className="relative bg-white dark:bg-black rounded-md border-black border-l-2 border-1">
+      <div className="relative bg-white dark:bg-black rounded-md">
         <video
           src={src}
           controls
@@ -172,4 +197,3 @@ export function VideoPlayer({ src }: VideoPlayerProps) {
     </div>
   );
 }
-
