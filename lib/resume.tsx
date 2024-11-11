@@ -14,10 +14,12 @@ export const DATA = {
     { href: "/", icon: HomeIcon, label: "Home" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
     //  { href: "/repos", icon: Icons.github, label: "Repos" },
+    // { href: "/projects", icon: Icons.suitcase, label: "Projects" },
+    // { href: "/resume", icon: Icons.file, label: "Resume" },
   ],
   contact: {
     email: "marian.holly7117@gmail.com",
-    tel: "+123456789",
+    tel: "+421949388479",
     social: {
       GitHub: {
         name: "GitHub",
