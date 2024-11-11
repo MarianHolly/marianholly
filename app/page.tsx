@@ -10,6 +10,7 @@ import BlogCard from "@/components/blog-card";
 import VideoPlayer2 from "@/components/card-project-v2";
 import GitHubRepos from "@/components/github-repos";
 import AnimatedBackground from "@/components/ui/animated-background";
+import ArticleList from "@/components/article-list";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -104,18 +105,14 @@ export default function Home() {
               </div>
             </div>
           </BlurFade>
-          <div className="">
-            <AnimatedBackground
-              className="rounded-lg bg-zinc-100 dark:bg-zinc-800"
-              transition={{
-                type: "spring",
-                bounce: 0.2,
-                duration: 0.6,
-              }}
-              enableHover
-            >
+
+          <div className="mx-12">
+          </div>
+
+          <div className="space-y-12 w-full py-12">
+            <BlurFade delay={BLUR_FADE_DELAY + 0.12}>
               {DATA.featuredArticles.map((article, id) => (
-                <BlurFade delay={BLUR_FADE_DELAY * 10 + id * 0.05} key={id}>
+                <div key={id}>
                   <BlogCard
                     id={id}
                     slug={article.slug}
@@ -123,12 +120,13 @@ export default function Home() {
                     summary={article.summary}
                     title={article.title}
                   />
-                </BlurFade>
+                </div>
               ))}
-            </AnimatedBackground>
+            </BlurFade>
           </div>
         </div>
       </section>
+
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 12}>

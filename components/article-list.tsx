@@ -17,7 +17,7 @@ interface Article {
     subtitle: string;
     publishedAt: string;
     summary: string;
-    image: string;
+    image?: string;
     tags: string[];
     published: boolean;
   };

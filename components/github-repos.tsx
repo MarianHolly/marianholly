@@ -9,6 +9,7 @@ import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 
 import Image from "next/image";
 import BlurFade from "./ui/blur-fade";
+import Link from "next/link";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -33,10 +34,7 @@ export default function GitHubRepos() {
       <BlurFade delay={BLUR_FADE_DELAY * 14}>
         <ul className="flex flex-col gap-6">
           {DATA.repositories.map((repo, id) => (
-            <BlurFade
-              key={repo.title + repo.dates}
-              delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-            >
+            <div key={repo.title + repo.dates}>
               <div
                 className="relative"
                 onMouseEnter={() => setHoveredIndex(id)}
@@ -111,9 +109,9 @@ export default function GitHubRepos() {
                           }}
                         >
                           <Image
-                            src="https://i.pinimg.com/564x/4c/95/69/4c9569ab2928e5ae400a6a34e7c537a0.jpg"
-                            width={200}
-                            height={150}
+                            src={repo.image}
+                            width={300}
+                            height={200}
                             quality={100}
                             alt="repo image"
                             className="rounded-lg shadow-lg"
@@ -124,7 +122,7 @@ export default function GitHubRepos() {
                   </Card>
                 </div>
               </div>
-            </BlurFade>
+            </div>
           ))}
         </ul>
       </BlurFade>

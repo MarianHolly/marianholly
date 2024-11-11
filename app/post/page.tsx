@@ -103,8 +103,9 @@ const HoverEffect = ({
                   />
                 )}
               </AnimatePresence>
+
               <div className="w-full h-full flex flex-row relative justify-center gap-4 p-1 rounded-md">
-                <div
+                <div 
                   className={cn(`rounded-md h-full w-full p-1 overflow-hidden relative z-10 flex flex-row items-start
                      bg-slate-50 border border-transparent group-hover:border-slate-100`)}
                 >
@@ -127,6 +128,8 @@ const HoverEffect = ({
                           {item.description}
                         </span>
                       </div>
+
+
                     </div>
                   </div>
                 </div>

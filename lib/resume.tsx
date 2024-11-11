@@ -67,7 +67,7 @@ export const DATA = {
       description: "Jednoduchý správca úloh vytvorený pomocou Next.js s TypeScriptom.",
       githubHref: "https://github.com/dillionverma/task-manager",
       websiteHref: "https://todo-list-8b2y.vercel.app/",
-      image: "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/developer-week.jpg",
+      image: "https://raw.githubusercontent.com/MarianHolly/endless-runner/refs/heads/main/endless-runner-1.png",
       dates: "March 23rd - 24th, 2018",
     },
     
@@ -83,21 +83,21 @@ export const DATA = {
       description: "Retro strieľačka z vesmíru vytvorená v Pythone s knižnicou Pygame.",
       githubHref: "https://github.com/Python-Game-Dev/Space-Invaders",  // Replace with your actual Github repository link
       websiteHref: "https://space-invaders-python.herokuapp.com/",  // Replace with your actual deployed website link (if any)
-      image: "https://raw.githubusercontent.com/mdn/content/master/files/webgl/spaceinvaders.png",
+      image: "https://raw.githubusercontent.com/MarianHolly/bookish-bliss/refs/heads/main/public/public-01.png",
       dates: "June 10th - 12th, 2022"
     },  {
       title: "Snake Game",
       description: "Klasická hra Had pre dvoch hráčov, vytvorená v Javascripte pomocou knižnice Canvas.",
       githubHref: "https://github.com/vasikprog/snake-game",  // Replace with your actual Github repository link
       websiteHref: "https://snake-game-vasikprog.netlify.app/",  // Replace with your actual deployed website link (if any)
-      image: "https://placeimg.com/640/480/animals",  // Replace with an image of the Snake Game
+      image: "https://raw.githubusercontent.com/MarianHolly/strapi-with-net-ninja/refs/heads/main/project-image.png",  // Replace with an image of the Snake Game
       dates: "May 1st - 2nd, 2023"
     }, {
       title: "Tic-Tac-Toe",
       description: "Strategická hra Pexeso pre dvoch hráčov, naprogramovaná v React.js.",
       githubHref: "https://github.com/maria-dev/tic-tac-toe-react",  // Replace with your actual Github repository link
-      websiteHref: "https://tic-tac-toe-maria.vercel.app/",  // Replace with your actual deployed website link (if any)
-      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Tic-tac-toe.svg/1200px-Tic-tac-toe.svg.png",
+      websiteHref: "https://raw.githubusercontent.com/MarianHolly/expense-tracker/refs/heads/5-Zustand/public/expense-tracker.png",  // Replace with your actual deployed website link (if any)
+      image: "",
       dates: "July 15th - 16th, 2024"
     }
 
