@@ -16,6 +16,8 @@ const nextConfig = {
           protocol: "https", hostname: "api.microlink.io"
         },{
           protocol: "https", hostname: "raw.githubusercontent.com"
+        },{
+          protocol: "https", hostname: "i.pinimg.com"
         }
       ],
     }

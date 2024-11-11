@@ -49,7 +49,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider delayDuration={0}>
-            <div className="py-12 sm:py-24 px-6 mx-auto max-w-2xl">{children}</div>
+            <div className="py-12 sm:py-24 px-6 mx-auto max-w-4xl">{children}</div>
             <SiteNavigation />
           </TooltipProvider>
         </ThemeProvider>
