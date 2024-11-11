@@ -16,24 +16,24 @@ export const DATA = {
     //  { href: "/repos", icon: Icons.github, label: "Repos" },
   ],
   contact: {
-    email: "hello@example.com",
+    email: "marian.holly7117@gmail.com",
     tel: "+123456789",
     social: {
       GitHub: {
         name: "GitHub",
-        url: "https://dub.sh/dillion-github",
+        url: "https://github.com/MarianHolly",
         icon: Icons.github,
         navbar: true,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://dub.sh/dillion-linkedin",
+        url: "https://www.linkedin.com/in/marian-holly-291b62306",
         icon: Icons.linkedin,
         navbar: true,
       },
       email: {
         name: "Send Email",
-        url: "#",
+        url: "marian.holly7117@gmail.com",
         icon: Icons.email,
         navbar: false,
       },
@@ -42,7 +42,7 @@ export const DATA = {
   projects: [
     {
       title: "Bookish Retreat",
-      href: "",
+      href: "videos/screen-capture-op.mp4",
       dates: "Jan 2024 - Feb 2024",
       active: true,
       description:
@@ -76,7 +76,29 @@ export const DATA = {
       websiteHref: "https://todo-list-8b2y.vercel.app/",
       image: "https://raw.githubusercontent.com/MarianHolly/todo-list/refs/heads/5-Zustand/public/todo-list.png",
       dates: "February 3rd - 4th, 2018",
-    },
+    },  {
+      title: "Space Invaders Clone",
+      description: "Retro strieľačka z vesmíru vytvorená v Pythone s knižnicou Pygame.",
+      githubHref: "https://github.com/Python-Game-Dev/Space-Invaders",  // Replace with your actual Github repository link
+      websiteHref: "https://space-invaders-python.herokuapp.com/",  // Replace with your actual deployed website link (if any)
+      image: "https://raw.githubusercontent.com/mdn/content/master/files/webgl/spaceinvaders.png",
+      dates: "June 10th - 12th, 2022"
+    },  {
+      title: "Snake Game",
+      description: "Klasická hra Had pre dvoch hráčov, vytvorená v Javascripte pomocou knižnice Canvas.",
+      githubHref: "https://github.com/vasikprog/snake-game",  // Replace with your actual Github repository link
+      websiteHref: "https://snake-game-vasikprog.netlify.app/",  // Replace with your actual deployed website link (if any)
+      image: "https://placeimg.com/640/480/animals",  // Replace with an image of the Snake Game
+      dates: "May 1st - 2nd, 2023"
+    }, {
+      title: "Tic-Tac-Toe",
+      description: "Strategická hra Pexeso pre dvoch hráčov, naprogramovaná v React.js.",
+      githubHref: "https://github.com/maria-dev/tic-tac-toe-react",  // Replace with your actual Github repository link
+      websiteHref: "https://tic-tac-toe-maria.vercel.app/",  // Replace with your actual deployed website link (if any)
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Tic-tac-toe.svg/1200px-Tic-tac-toe.svg.png",
+      dates: "July 15th - 16th, 2024"
+    }
+
   ],
   featuredArticles: [
     {
