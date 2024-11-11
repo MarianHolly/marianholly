@@ -5,21 +5,17 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import BlurFade from "@/components/ui/blur-fade";
 import BlurFadeText from "@/components/ui/blur-fade-text";
-import BlogCard from "@/components/blog-card";
-import GitHubRepoList from "@/components/list-github-repos";
-import ProjectCard from "@/components/card-project";
-import { CardTitle } from "@/components/ui/card";
-import VideoPlayer2 from "@/components/card-project-v2";
 
-interface VideoPlayerProps {
-  src: string;
-}
+import BlogCard from "@/components/blog-card";
+import VideoPlayer2 from "@/components/card-project-v2";
+import GitHubRepos from "@/components/github-repos";
+import AnimatedBackground from "@/components/ui/animated-background";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex flex-col min-h-[100dvh] max-w-2xl mx-auto space-y-10">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8 lg:pt-44">
           <div className="gap-2 flex justify-between">
@@ -45,7 +41,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section id="about" className="mb-12">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold mb-2">O mne</h2>
@@ -76,48 +71,17 @@ export default function Home() {
               </div>
             </div>
           </BlurFade>
-          <div className="w-full flex flex-col items-center">
+
+          <BlurFade delay={BLUR_FADE_DELAY * 6}>
             {DATA.projects.map((project, id) => (
-              <ProjectCard key={id} {...project} />
+              <VideoPlayer2 key={id} {...project} />
             ))}
-          </div>
+          </BlurFade>
         </div>
       </section>
 
-      {/* <section className="w-full mt-4 md:mt-6">
-        <div className="w-full flex flex-col items-center">
-          <VideoPlayer src="videos/screen-capture-op.mp4" />
-          <div
-            className="my-4 flex flex-col items-center justify-center gap-1 w-5/6 py-2 px-4 md:px-8
-          bg-white/80 backdrop-blur-sm rounded-lg md:backdrop-filter-none shadow-xl"
-          >
-            <CardTitle className="text-lg flex justify-between items-center">
-              Bookish Retreat
-            </CardTitle>
-            <p className="text-xs text-muted-foreground">Jan 2024 - Feb 2024</p>
-            <p className="text-sm mb-2 line-clamp-2 ">
-              This is a mock description for the project. It showcases the
-              project's main features and goals in a concise manner.
-            </p>
-          </div>
-        </div>
-      </section> */}
-
-      {/* <section className="w-full mt-4 md:mt-6">
-        <div className="flex flex-col items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-          <h2 className="text-xl font-bold mb-4">Bookish Retreat</h2>
-          <VideoPlayer src="videos/screen-capture-op.mp4" />
-        </div>
-      </section> */}
-
-      <section className="w-full mt-4 md:mt-6">
-        {DATA.projects.map((project, id) => (
-          <VideoPlayer2 key={id} {...project} />
-        ))}
-      </section>
-
-      <section id="repositories">
-        <GitHubRepoList />
+      <section id="repositories" className="mb-12">
+        <GitHubRepos />
       </section>
 
       <section id="blog">
@@ -141,24 +105,30 @@ export default function Home() {
             </div>
           </BlurFade>
           <div className="">
-            {DATA.featuredArticles.map((article, id) => (
-              <BlurFade
-                delay={BLUR_FADE_DELAY * 10 + id * 0.05}
-                key={article.title}
-              >
-                <BlogCard
-                  id={id}
-                  slug={article.slug}
-                  publishedAt={article.publishedAt}
-                  summary={article.summary}
-                  title={article.title}
-                />
-              </BlurFade>
-            ))}
+            <AnimatedBackground
+              className="rounded-lg bg-zinc-100 dark:bg-zinc-800"
+              transition={{
+                type: "spring",
+                bounce: 0.2,
+                duration: 0.6,
+              }}
+              enableHover
+            >
+              {DATA.featuredArticles.map((article, id) => (
+                <BlurFade delay={BLUR_FADE_DELAY * 10 + id * 0.05} key={id}>
+                  <BlogCard
+                    id={id}
+                    slug={article.slug}
+                    publishedAt={article.publishedAt}
+                    summary={article.summary}
+                    title={article.title}
+                  />
+                </BlurFade>
+              ))}
+            </AnimatedBackground>
           </div>
         </div>
       </section>
-
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 12}>
@@ -191,26 +161,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  );
-}
-
-export function VideoPlayer({ src }: VideoPlayerProps) {
-  return (
-    <div
-      className="w-full rounded-lg overflow-hidden shadow-xl"
-      data-sentry-component="VideoPlayer"
-      data-sentry-source-file="VideoPlayer.tsx"
-    >
-      <div className="relative bg-white dark:bg-black rounded-md">
-        <video
-          src={src}
-          controls
-          autoPlay
-          muted
-          playsInline
-          className="w-full rounded-md overflow-hidden"
-        />
-      </div>
-    </div>
   );
 }

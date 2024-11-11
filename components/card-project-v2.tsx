@@ -8,7 +8,35 @@ interface VideoPlayerProps {
   src: string;
 }
 
-export default function VideoPlayer2({ src }: VideoPlayerProps) {
+interface ProjectLink {
+  type: string;
+  href: string;
+  icon: React.ReactNode;
+}
+
+interface ProjectCardProps {
+  title: string;
+  href: string;
+  dates: string;
+  active: boolean;
+  description: string;
+  technologies: string[];
+  links?: ProjectLink[];
+  image?: string;
+  video?: string;
+}
+
+export default function VideoPlayer2({
+  title,
+  href,
+  dates,
+  active,
+  description,
+  technologies,
+  links,
+  image,
+  video,
+}: ProjectCardProps) {
   const [videoProgress, setVideoProgress] = useState<number>(0);
   const [videoDuration, setVideoDuration] = useState<number>();
   const [isPaused, setIsPaused] = useState(false);
@@ -58,7 +86,7 @@ export default function VideoPlayer2({ src }: VideoPlayerProps) {
       </div>
 
       <video
-        src={src}
+        src={href}
         playsInline
         autoPlay
         muted
