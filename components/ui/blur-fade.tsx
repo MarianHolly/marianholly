@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -39,7 +39,15 @@ export default function BlurFade({
 }: BlurFadeProps) {
   const ref = useRef(null);
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
-  const isInView = !inView || inViewResult;
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (!hasAnimated && (!inView || inViewResult)) {
+      setHasAnimated(true);
+    }
+  }, [inView, inViewResult, hasAnimated]);
+
+
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
     visible: { y: -yOffset, opacity: 1, filter: `blur(0px)` },
@@ -50,7 +58,7 @@ export default function BlurFade({
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={hasAnimated ? "visible" : "hidden"}
         exit="hidden"
         variants={combinedVariants}
         transition={{

@@ -16,14 +16,14 @@ type LinkPreviewProps = {
   quality?: number;
   layout?: string;
 } & ({ isStatic: true; imageSrc: string } | { isStatic?: false; imageSrc?: never });
-// transparent
+
 export const LinkPreview = ({
   children,
   url,
   className,
   width = 300,
   height = 190,
-  quality = 100,
+  quality = 170,
   layout = "fixed",
   isStatic = false,
   imageSrc = "",
