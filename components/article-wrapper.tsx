@@ -13,6 +13,8 @@ interface FilterContextType {
   setFilterPublished: (value: boolean) => void;
   categoryFilter: string;
   setCategoryFilter: (value: string) => void;
+  sortOrder: "asc" | "desc";
+  setSortOrder: (value: "asc" | "desc") => void;
 }
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -31,22 +33,37 @@ interface ArticleFilterWrapperProps {
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function ArticleFilterWrapper({ children }: ArticleFilterWrapperProps) {
+export default function ArticleFilterWrapper({
+  children,
+}: ArticleFilterWrapperProps) {
   const [filterPublished, setFilterPublished] = useState(true);
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
   const resetFilters = () => {
     setFilterPublished(true);
     setCategoryFilter("");
+    setSortOrder("desc");
   };
 
   const toggleFilter = () => {
     setFilterPublished((prev) => !prev);
   };
 
+  const toggleSortOrder = () => {
+    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  };
+
   return (
     <FilterContext.Provider
-      value={{ filterPublished, setFilterPublished, categoryFilter, setCategoryFilter }}
+      value={{
+        filterPublished,
+        setFilterPublished,
+        categoryFilter,
+        setCategoryFilter,
+        sortOrder,
+        setSortOrder,
+      }}
     >
       <div className="w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
@@ -69,12 +86,18 @@ export default function ArticleFilterWrapper({ children }: ArticleFilterWrapperP
                       <EyeOffIcon className="h-12 w-12" />
                     )}
                     <span className="sr-only">
-                      {filterPublished ? "curious about planned posts" : "only published posts"}
+                      {filterPublished
+                        ? "curious about planned posts"
+                        : "only published posts"}
                     </span>
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{filterPublished ? "curious about planned posts" : "only published posts"}</p>
+                  <p>
+                    {filterPublished
+                      ? "curious about planned posts"
+                      : "only published posts"}
+                  </p>
                 </TooltipContent>
               </Tooltip>
 

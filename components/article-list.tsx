@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { cn, formatDateShort } from "@/lib/utils";
 import { useFilterContext } from "./article-wrapper";
 import { AnimatePresence, motion } from "framer-motion";
-import { cn, formatDateShort } from "@/lib/utils";
 
 import { Button } from "./ui/button";
 import { TIcons } from "./icons";
@@ -32,13 +32,8 @@ const BLUR_FADE_DELAY = 0.04;
 export default function ArticleList({ articles }: ArticleListProps) {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const { filterPublished, categoryFilter, setCategoryFilter } = useFilterContext();
-
-  const filteredArticles = articles.filter(
-    (article) =>
-      (!filterPublished || article.metadata.published) &&
-      (categoryFilter === "" || article.metadata.tags.includes(categoryFilter))
-  );
+  const { filterPublished, categoryFilter, setCategoryFilter } =
+    useFilterContext();
 
   const categories: any[] = Array.from(
     new Set(articles.flatMap((article) => article.metadata.tags))
@@ -56,13 +51,31 @@ export default function ArticleList({ articles }: ArticleListProps) {
     }
   };
 
+  const sortedAndFilteredArticles = useMemo(() => {
+    return articles
+      .filter(
+        (article) =>
+          (!filterPublished || article.metadata.published) &&
+          (categoryFilter === "" ||
+            article.metadata.tags.includes(categoryFilter))
+      )
+      .sort((a, b) => {
+        // Sort by publishedAt date in descending order (newest first)
+        return (
+          new Date(b.metadata.publishedAt).getTime() -
+          new Date(a.metadata.publishedAt).getTime()
+        );
+      });
+  }, [articles, filterPublished, categoryFilter]);
+
   return (
     <div>
       <BlurFade delay={BLUR_FADE_DELAY}>
         <div className="flex flex-row justify-end mb-4">
           <div className="flex flex-wrap gap-1">
             {categories.map((category) => {
-              const IconComponent = TIcons[category.toLowerCase() as keyof typeof TIcons];
+              const IconComponent =
+                TIcons[category.toLowerCase() as keyof typeof TIcons];
               return (
                 <Button
                   key={category}
@@ -74,7 +87,9 @@ export default function ArticleList({ articles }: ArticleListProps) {
                   {IconComponent ? (
                     <IconComponent className="" />
                   ) : (
-                    <span className="text-xs">{category.slice(0, 2).toUpperCase()}</span>
+                    <span className="text-xs">
+                      {category.slice(0, 2).toUpperCase()}
+                    </span>
                   )}
                   <span className="sr-only">{category}</span>
                 </Button>
@@ -85,10 +100,11 @@ export default function ArticleList({ articles }: ArticleListProps) {
         <Separator orientation="horizontal" className="h-full" />
       </BlurFade>
 
-      <ul className="space-y-2">
-        {filteredArticles.map((article, id) => (
-          <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={article.slug}>
+      <BlurFade delay={BLUR_FADE_DELAY + 0.12}>
+        <ul className="space-y-2">
+          {sortedAndFilteredArticles.map((article, id) => (
             <div
+              key={article.slug}
               className="relative"
               onMouseEnter={() => setHoveredIndex(id)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -96,7 +112,7 @@ export default function ArticleList({ articles }: ArticleListProps) {
               <AnimatePresence>
                 {hoveredIndex === id && (
                   <motion.span
-                    className="absolute inset-0 h-full w-full bg-slate-100 dark:bg-slate-800/[0.8] block rounded-xl"
+                    className="absolute inset-0 h-full w-full bg-slate-100 dark:bg-slate-800/[0.8] block rounded-md"
                     layoutId="hoverBackground"
                     initial={{ opacity: 0 }}
                     animate={{
@@ -122,7 +138,7 @@ export default function ArticleList({ articles }: ArticleListProps) {
                 >
                   <div
                     className={cn(
-                      "rounded-xl h-full w-full p-1 overflow-hidden bg-slate-10 border border-transparent dark:border-black group-hover:border-slate-150 relative z-10 flex flex-row items-start"
+                      "rounded-xl h-full w-full p-1 overflow-hidden bg-slate-10 border border-transparent group-hover:border-slate-150 relative z-10 flex flex-row items-start"
                     )}
                   >
                     <div className="relative z-50">
@@ -138,11 +154,13 @@ export default function ArticleList({ articles }: ArticleListProps) {
                         </div>
 
                         <div className="flex flex-col gap-1">
-                          <h2 className="font-semibold leading-none">{article.metadata.title}</h2>
+                          <h2 className="font-semibold leading-none">
+                            {article.metadata.title}
+                          </h2>
 
-                          {article.metadata.summary && (
+                          {article.metadata.subtitle && (
                             <span className="prose dark:prose-invert text-xs text-muted-foreground">
-                              {article.metadata.summary}
+                              {article.metadata.subtitle}
                             </span>
                           )}
                           {/*
@@ -158,9 +176,9 @@ export default function ArticleList({ articles }: ArticleListProps) {
                 </a>
               </div>
             </div>
-          </BlurFade>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      </BlurFade>
     </div>
   );
 }
