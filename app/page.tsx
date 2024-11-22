@@ -9,8 +9,10 @@ import BlurFadeText from "@/components/ui/blur-fade-text";
 import BlogCard from "@/components/blog-card";
 import VideoPlayer2 from "@/components/card-project-v2";
 import GitHubRepos from "@/components/github-repos";
-import AnimatedBackground from "@/components/ui/animated-background";
-import ArticleList from "@/components/article-list";
+import HoverMailCard from "@/components/hover-mail";
+import { Button } from "@/components/ui/button";
+import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Badge } from "@/components/ui/badge";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -34,7 +36,7 @@ export default function Home() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
+              <Avatar className="size-32 border">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -75,7 +77,55 @@ export default function Home() {
 
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
             {DATA.projects.map((project, id) => (
-              <VideoPlayer2 key={id} {...project} />
+              <div
+                key={id}
+                className="flex flex-col space-y-3 items-center justify-center"
+              >
+                <VideoPlayer2 {...project} />
+                <div className="w-4/5">
+                  <h2 className="text-center font-bold text-xl mb-2">
+                    {project.title}
+                  </h2>
+                  <p className="text-center text-sm text-muted-foreground mb-2">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-row justify-center my-2 gap-2 ">
+                  {project.technologies.map((tech, id) => (
+                    <Badge variant='outline' key={id} className="text-center text-xs text-muted-foreground px-1 py-0.5">
+                      {tech}
+                    </Badge>
+                  ))}
+
+                  </div>
+                  <div className="flex flex-row space-x-2 justify-center">
+                    <Link href={project.githubHref} passHref legacyBehavior>
+                      <a target="_blank">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="rounded-xl w-16 p-0"
+                        >
+                          <GitHubLogoIcon className="h-5 w-5" />
+                        </Button>
+                      </a>
+                    </Link>
+
+                    {project.websiteHref && (
+                      <Link href={project.websiteHref} passHref legacyBehavior>
+                        <a target="_blank">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-xl w-16"
+                            >
+                            <CodeSandboxLogoIcon className="h-5 w-5" />
+                          </Button>
+                        </a>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
           </BlurFade>
         </div>
@@ -86,7 +136,7 @@ export default function Home() {
       </section>
 
       <section id="blog">
-        <div className="space-y-12 w-full py-12">
+        <div className="space-y-12 w-full">
           <BlurFade delay={BLUR_FADE_DELAY * 10}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -105,11 +155,7 @@ export default function Home() {
               </div>
             </div>
           </BlurFade>
-
-          <div className="mx-12">
-          </div>
-
-          <div className="space-y-12 w-full py-12">
+          <div className="space-y-12 w-full pt-4 pb-12">
             <BlurFade delay={BLUR_FADE_DELAY + 0.12}>
               {DATA.featuredArticles.map((article, id) => (
                 <div key={id}>
@@ -130,30 +176,36 @@ export default function Home() {
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 12}>
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                 kontakt
               </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mb-6">
                 dajte mi vedieť
               </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <span className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 ani facebook, ani instagram, ale môžete ma nájsť na{" "}
                 <Link
-                  href={DATA.contact.email}
-                  className="text-cyan-600 hover:underline"
+                  href={DATA.contact.social.LinkedIn.url}
+                  passHref
+                  legacyBehavior
                 >
-                  LinkedIn
+                  <a target="_blank" className="text-cyan-700 hover:underline">
+                    LinkedIn
+                  </a>
                 </Link>
-                . naj možnosť je{" "}
-                <Link
-                  href={DATA.contact.email}
-                  className="text-cyan-600 hover:underline"
-                >
-                  via mail
-                </Link>
+                .<br /> naj možnosť je{" "}
+                <HoverMailCard
+                  trigger="via mail"
+                  content={DATA.contact.email}
+                  position={{
+                    top: "-3rem",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                />
                 . Ozvem sa, keď budem môcť.
-              </p>
+              </span>
             </div>
           </BlurFade>
         </div>
