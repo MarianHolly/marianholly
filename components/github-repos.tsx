@@ -27,12 +27,18 @@ export default function GitHubRepos() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
               neustále niečo kódujem
             </h2>
+            <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Preskúmaj moju cestu kódenia cez rôznorodú zbierku projektov, od
+              malých experimentov až po plnohodnotné aplikácie postavené rôznymi
+              technologiami React, Next.js, Typescript, Astro, Sanity,
+              Contentful, Python, Django, Flask, Pygame.
+            </p>
           </div>
         </div>
       </BlurFade>
 
       <BlurFade delay={BLUR_FADE_DELAY * 14}>
-        <ul className="flex flex-col gap-6">
+        <ul className="flex flex-col gap-2">
           {DATA.repositories.map((repo, id) => (
             <div key={repo.title + repo.dates}>
               <div
@@ -58,23 +64,34 @@ export default function GitHubRepos() {
                   )}
                 </AnimatePresence>
 
-                <div className="w-full flex flex-row relative justify-start gap-4 p-2 rounded-md">
+                <div className="w-full flex flex-row relative justify-start gap-4 md:p-2 rounded-md">
                   <Card isHovered={hoveredIndex === id}>
-                    <div className="w-18 flex items-center justify-center pl-3 flex-row gap-3">
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full"
-                      >
-                        <CodeSandboxLogoIcon />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full"
-                      >
-                        <GitHubLogoIcon />
-                      </Button>
+                    <div className="w-24 md:w-32 flex items-center justify-center pl-3 flex-row gap-3">
+                      <Link href={repo.githubHref} passHref legacyBehavior>
+                        <a target="_blank">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <GitHubLogoIcon />
+                          </Button>
+                        </a>
+                      </Link>
+
+                      {repo.websiteHref && (
+                        <Link href={repo.websiteHref} passHref legacyBehavior>
+                          <a target="_blank">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="rounded-full"
+                            >
+                              <CodeSandboxLogoIcon />
+                            </Button>
+                          </a>
+                        </Link>
+                      )}
                     </div>
 
                     <div className="flex flex-col gap-1 cursor-pointer">
@@ -90,7 +107,7 @@ export default function GitHubRepos() {
                       </p>
                       {repo.description && (
                         <span className="prose dark:prose-invert text-xs text-muted-foreground">
-                          {repo.description.split(" ").slice(0, 10).join(" ")}
+                          {repo.description.split(" ").slice(0, 25).join(" ")}
                         </span>
                       )}
                     </div>
