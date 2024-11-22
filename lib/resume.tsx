@@ -49,58 +49,52 @@ export const DATA = {
       active: true,
       description:
         "Discover a hidden gem of literature. Browse by genre, author, or publisher and find your next favorite read.",
-      technologies: ["Next.js", "Typescript", "TailwindCSS", "Stripe", "Shadcn UI"],
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "TailwindCSS",
+        "Stripe",
+        "Shadcn UI",
+      ],
+      githubHref: "https://github.com/MarianHolly/bookish-bliss",
+      websiteHref: "https://bookish-bliss.vercel.app/",
       links: [
         {
           type: "Website",
-          href: "https://chatcollect.com",
+          href: "",
           icon: <Icons.globe className="size-3" />,
         },
+        {
+          type: "GitHub",
+          href: "",
+          icon: <Icons.github className="size-3" />,
+        },
       ],
-      image: "https://raw.githubusercontent.com/MarianHolly/bookish-bliss/refs/heads/main/public/public-01.png",
-      video: "https://raw.githubusercontent.com/MarianHolly/bookish-bliss/refs/heads/main/public/public-01.png",
+      image:
+        "https://raw.githubusercontent.com/MarianHolly/bookish-bliss/refs/heads/main/public/public-01.png",
+      video:
+        "https://raw.githubusercontent.com/MarianHolly/bookish-bliss/refs/heads/main/public/public-01.png",
     },
   ],
   repositories: [
     {
-      title: "Task Manager",
-      description: "Jednoduchý správca úloh vytvorený pomocou Next.js s TypeScriptom.",
-      githubHref: "https://github.com/dillionverma/task-manager",
-      websiteHref: "https://todo-list-8b2y.vercel.app/",
-      image: "https://raw.githubusercontent.com/MarianHolly/endless-runner/refs/heads/main/endless-runner-1.png",
-      dates: "March 23rd - 24th, 2018",
-    },
-    
-    {
-      title: "Flappy Bird",
-      description: "Legendárna hra vytvorená pomocou Pythonu a Pygame.",
+      title: "Todo List",
+      description:
+        "Porovnaj rôzne spôsoby správy stavu v Reacte (hooks, Zustand, Redux Toolkit) na jednoduchom príklade zoznamu úloh.",
       githubHref: "https://github.com/MarianHolly/todo-list/tree/5-Zustand",
       websiteHref: "https://todo-list-8b2y.vercel.app/",
-      image: "https://raw.githubusercontent.com/MarianHolly/todo-list/refs/heads/5-Zustand/public/todo-list.png",
-      dates: "February 3rd - 4th, 2018",
-    },  {
-      title: "Space Invaders Clone",
-      description: "Retro strieľačka z vesmíru vytvorená v Pythone s knižnicou Pygame.",
-      githubHref: "https://github.com/Python-Game-Dev/Space-Invaders",  // Replace with your actual Github repository link
-      websiteHref: "https://space-invaders-python.herokuapp.com/",  // Replace with your actual deployed website link (if any)
-      image: "https://raw.githubusercontent.com/MarianHolly/bookish-bliss/refs/heads/main/public/public-01.png",
-      dates: "June 10th - 12th, 2022"
-    },  {
-      title: "Snake Game",
-      description: "Klasická hra Had pre dvoch hráčov, vytvorená v Javascripte pomocou knižnice Canvas.",
-      githubHref: "https://github.com/vasikprog/snake-game",  // Replace with your actual Github repository link
-      websiteHref: "https://snake-game-vasikprog.netlify.app/",  // Replace with your actual deployed website link (if any)
-      image: "https://raw.githubusercontent.com/MarianHolly/strapi-with-net-ninja/refs/heads/main/project-image.png",  // Replace with an image of the Snake Game
-      dates: "May 1st - 2nd, 2023"
-    }, {
-      title: "Tic-Tac-Toe",
-      description: "Strategická hra Pexeso pre dvoch hráčov, naprogramovaná v React.js.",
-      githubHref: "https://github.com/maria-dev/tic-tac-toe-react",  // Replace with your actual Github repository link
-      websiteHref: "https://raw.githubusercontent.com/MarianHolly/expense-tracker/refs/heads/5-Zustand/public/expense-tracker.png",  // Replace with your actual deployed website link (if any)
-      image: "",
-      dates: "July 15th - 16th, 2024"
-    }
-
+      image:
+        "https://raw.githubusercontent.com/MarianHolly/todo-list/refs/heads/5-Zustand/public/todo-list.png",
+      dates: "Marec 3 - April 12, 2024",
+    },
+    {
+      title: "Endless Runner",
+      description: "Krok-za-krokom návod na vytvorenie pixelovej hry s Pygame.",
+      githubHref: "https://github.com/MarianHolly/endless-runner",
+      image:
+        "https://raw.githubusercontent.com/MarianHolly/endless-runner/refs/heads/main/endless-runner-1.png",
+      dates: "Oktover 12 - November 4, 2024",
+    },
   ],
   featuredArticles: [
     {
@@ -118,6 +112,6 @@ export const DATA = {
       summary:
         "Preskúmanie princípov objektovo-orientovaného programovania a ich implementácia v Pythone.",
       slug: "object-oriented-programming",
-    }
+    },
   ],
 };
