@@ -7,7 +7,7 @@ export const DATA = {
   url: "https://marianholly.vercel.app",
   avatarUrl: "/avatar.jpg",
   description:
-    "Front-end developer, samouk. Momentálne sa učím Python. Preferujem minimalizmus v dizajne aj sociálnych sieťach.",
+    "Front-end developer, samouk - React, Nextjs... Momentálne sa učím Python a Django. Minimalizmus v dizajne aj sociálnych sieťach.",
   summary:
     "Momentálne si rozširujem zručnosti získavaním certifikátu v [Pythone na Software Development Academy](https://sdacademy.sk/kurzy/python/), čo mi pomôže prejsť na backendový vývoj a analýzu dát. Okrem učenia sa Pythonu [píšem články o témach vo frontend vývoji](https://dev.to/), poznámky z python učenia, občas pár tipov a objevov vo web vývoji. Naďalej si prehlbujem zručnosti vo frontend-e a občas experimentujem s dizajnovaním.",
   navbar: [
