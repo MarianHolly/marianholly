@@ -85,7 +85,7 @@ export default async function Blog({
         }}
       />
 
-      <div id="header" className="">
+      <div id="header" className="max-w-4xl mx-auto">
         <div className="w-full flex flex-col justify-between items-center">
           <h1 className="text-center font-bold text-4xl tracking-wider mb-2">
             {post.metadata.title}
@@ -107,13 +107,13 @@ export default async function Blog({
             alt={post.metadata.title}
             width={900}
             height={400}
-            className="rounded-2xl"
+            className="rounded-2xl mb-12"
           />
         </div>
       </div>
 
       <article
-        className="prose dark:prose-invert"
+        className="prose dark:prose-invert max-w-4xl mx-auto"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
     </section>
