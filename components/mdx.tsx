@@ -61,9 +61,22 @@ function slugify(str: string) {
 function createHeading(level: number) {
   const Heading = ({ children }: { children: React.ReactNode }) => {
     let slug = slugify(children as string);
+
+    const sizeClasses = {
+      1: "text-4xl font-bold",
+      2: "text-3xl font-semibold",
+      3: "text-2xl font-medium",
+      4: "text-xl font-normal",
+      5: "text-lg font-light",
+      6: "text-base font-light"
+    };
+
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      { 
+        id: slug, 
+        className: sizeClasses[level as keyof typeof sizeClasses]
+      },
       [
         React.createElement("a", {
           href: `#${slug}`,

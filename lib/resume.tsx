@@ -98,19 +98,11 @@ export const DATA = {
   ],
   featuredArticles: [
     {
-      title: "Spravovanie stavu v Reacte",
-      subtitle: "Manažovanie stavu v aplikáciách s využitím Reactu",
-      publishedAt: "2024-09-05",
-      summary:
-        "Podrobnejší pohľad na manažovanie, zdielanie a spravovanie stavu v aplikáciách s využitím Reactu.",
-      slug: "state-management-in-react",
-    },
-    {
-      title: "Objektovo-orientované programovanie v Pythone",
-      subtitle: "Ako premýšlať s objektovou orientáciou v Pythone",
+      title: "Python a OOP: Kompletný sprievodca pre programátorov",
+      subtitle: "Podrobný sprievodca OOP v Pythone, ktorý zahŕňa základné koncepty aj pokročilé témy, ako sú abstrakcia, polymorfizmus a metaklasy",
       publishedAt: "2024-09-22",
       summary:
-        "Preskúmanie princípov objektovo-orientovaného programovania a ich implementácia v Pythone.",
+        "Zisti, ako zvládnuť objektovo orientované programovanie (OOP) v Pythone od základov až po pokročilé techniky. Tento článok ponúka komplexný prehľad všetkého, čo potrebuješ vedieť na dosiahnutie excelentnej úrovne ako programátor.",
       slug: "object-oriented-programming",
     },
   ],

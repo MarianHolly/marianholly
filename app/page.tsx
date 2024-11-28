@@ -10,9 +10,12 @@ import BlogCard from "@/components/blog-card";
 import VideoPlayer2 from "@/components/card-project-v2";
 import GitHubRepos from "@/components/github-repos";
 import HoverMailCard from "@/components/hover-mail";
+
 import { Button } from "@/components/ui/button";
 import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
+import { NotebookIcon } from "lucide-react";
+import ShinyButton from "@/components/ui/shiny-button";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -90,12 +93,15 @@ export default function Home() {
                     {project.description}
                   </p>
                   <div className="flex flex-row justify-center my-2 gap-2 ">
-                  {project.technologies.map((tech, id) => (
-                    <Badge variant='outline' key={id} className="text-center text-xs text-muted-foreground px-1 py-0.5">
-                      {tech}
-                    </Badge>
-                  ))}
-
+                    {project.technologies.map((tech, id) => (
+                      <Badge
+                        variant="outline"
+                        key={id}
+                        className="text-center text-xs text-muted-foreground px-1 py-0.5"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
                   </div>
                   <div className="flex flex-row space-x-2 justify-center">
                     <Link href={project.githubHref} passHref legacyBehavior>
@@ -117,7 +123,7 @@ export default function Home() {
                             variant="outline"
                             size="icon"
                             className="rounded-xl w-16"
-                            >
+                          >
                             <CodeSandboxLogoIcon className="h-5 w-5" />
                           </Button>
                         </a>
@@ -168,6 +174,11 @@ export default function Home() {
                   />
                 </div>
               ))}
+              <div className="w-full mt-4 flex flex-col justify-center items-center">
+                <Link href='/blog'>
+                  <ShinyButton>zvedavý na ostatné články?</ShinyButton>
+                </Link>
+              </div>
             </BlurFade>
           </div>
         </div>
