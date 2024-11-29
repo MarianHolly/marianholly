@@ -10,13 +10,11 @@ published: true
 
 ### Prečo je objektovo orientované programovanie (OOP) dôležité?
 
-Objektovo orientované programovanie (OOP) umožňuje modelovať problémy spôsobom, ktorý odráža reálny svet. Predstav si napríklad auto, ktoré môžeš reprezentovať ako objekt s **atribútmi** (napr. farba, počet dverí) a **metódami** (napr. jazdiť, zastaviť). Tento prístup vedie k logickejšiemu, prehľadnejšiemu a znovu použiteľnému kódu. OOP umožňuje programátorom štruktúrovať aplikácie tak, aby boli intuitívne a ľahko upraviteľné, čo je kľúčové najmä vo väčších projektoch.
+Objektovo orientované programovanie (OOP) umožňuje modelovať problémy spôsobom, ktorý odráža reálny svet. Predstav si napríklad auto, ktoré môžeš reprezentovať ako objekt s **atribútmi** (napr. farba, počet dverí) a **metódami** (napr. jazdiť, zastaviť). Tento prístup vedie k logickejšiemu, prehľadnejšiemu a znovu použiteľnému kódu. 
 
-### Aké výhody nám dáva OOP?
+#### Aké výhody nám dáva OOP?
 
 Medzi hlavné výhody patrí modularita – program sa rozdelí na časti, ktoré sú prehľadné a jednoducho sa spravujú. OOP tiež podporuje znovupoužiteľnosť kódu. Ak už máš triedu, napríklad `User`, môžeš ju použiť vo viacerých projektoch bez potreby prepisovania. Ďalšou veľkou výhodou je flexibilita, ktorá umožňuje pridávať nové funkcie alebo meniť existujúce bez zásadných zmien v kóde.
-
-OOP podporuje aj spoluprácu medzi programátormi. Ak má projekt jasne definované triedy a moduly, jednotlivé časti môžu byť vyvíjané nezávisle od seba, čo uľahčuje prácu v tíme. Rovnako OOP zjednodušuje testovanie – jednotlivé triedy a ich metódy je možné samostatne testovať, čo pomáha rýchlo lokalizovať chyby.
 
 ### S akými ťažkosťami sa môžeme stretnúť pri učení OOP?
 
@@ -24,158 +22,51 @@ Jednou z najčastejších výziev je pochopenie abstraktných konceptov, ako sú
 
 Prechod z procedurálneho myslenia na OOP môže byť tiež náročný. Ak si zvyknutý na písanie jednoduchých funkcií bez tried, učenie OOP si vyžaduje zmenu prístupu a uvažovania o kóde. V Pythone navyše existujú špecifické výzvy, ako pochopenie magických metód (__init__, __str__, __add__) a ich použitia.
 
-Správne navrhnutie komunikácie medzi triedami môže byť mätúce – ak sa triedy navzájom príliš spoliehajú jedna na druhú, môže sa vytvoriť neprehľadný a zložitý kód, ktorý je ťažké udržiavať.
-
-### Ako prekonať tieto ťažkosti?
+#### Ako prekonať tieto ťažkosti?
 
 Najlepším spôsobom, ako sa naučiť OOP, je začať s jednoduchými príkladmi, ako sú triedy Car, Animal alebo Book. Vyskúšaj vytvoriť malý projekt, napríklad správu úloh alebo knižnicu kníh, kde uplatníš základné koncepty OOP. Vizualizácia vzťahov medzi triedami, ako napríklad kreslenie diagramov, môže pomôcť lepšie pochopiť hierarchie a závislosti.
 
-Odporúčam tiež čítať kód od skúsených programátorov – pomôže ti to vidieť, ako sa OOP využíva v reálnych projektoch. Postupne sa môžeš presunúť k pokročilejším konceptom, ako sú abstraktné triedy, polymorfizmus či metaklasy, ale vždy si daj čas na pochopenie základov. Ak máš otázky alebo potrebuješ ďalšie vysvetlenie, som tu, aby som pomohol!
+Odporúčam tiež čítať kód od skúsených programátorov – pomôže ti to vidieť, ako sa OOP využíva v reálnych projektoch. Postupne sa môžeš presunúť k pokročilejším konceptom, ako sú abstraktné triedy, polymorfizmus či metaklasy, ale vždy si daj čas na pochopenie základov. 
 
-## Prvá Časť: Koncepty
+## prvá časť: Koncepty
 
+**Objektovo-orientované programovanie (OOP)** je štýl programovania, ktorý organizuje kód do **tried** a **objektov**. Umožňuje modelovanie reálnych svetov prostredníctvom vlastností (atribútov) a správania (metód). Tu sú hlavné koncepty OOP:
 
+1. **Trieda**: Trieda je šablóna pre vytváranie objektov. Obsahuje definície vlastností (atribútov) a správania (metód), ktoré objekty danej triedy budú mať.
+    
+2. **Objekt**: Objekt je konkrétna inštancia triedy. Ak je trieda šablóna, objekt je „hotový produkt“, ktorý je vytvorený podľa tejto šablóny.
+    
+3. **Inštancia**: Inštancia je konkrétny objekt vytvorený z triedy. Každá inštancia môže mať vlastné hodnoty pre atribúty definované triedou.
+    
+4. **Atribút**: Atribúty sú vlastnosti, ktoré opisujú stav objektu. V príklade vyššie sú `name` a `age` atribúty triedy `Person`.
+    
+5. **Metóda**: Metódy sú funkcie definované v rámci triedy, ktoré popisujú správanie objektu. Napríklad metóda `introduce` definuje, ako sa objekt „predstaví“.
+    
+6. **Konštruktor**: Konštruktor (`__init__`) je špeciálna metóda, ktorá sa volá automaticky pri vytváraní novej inštancie objektu. Používa sa na inicializáciu atribútov.
 
-
-
-
-
-
-```python
-class BankAccount:
-    def __init__(self, balance):
-        self.__balance = balance  # Private attribute
-
-    def deposit(self, amount):
-        if amount > 0:
-            self.__balance += amount
-
-    def get_balance(self):
-        return self.__balance
-
-account = BankAccount(1000)
-account.deposit(500)
-print(account.get_balance())  # Output: 1500
-```
-
-### 2. Abstraction
-
-Abstraction is the process of hiding the complex implementation details and showing only the necessary features of an object.
-
-```python
-from abc import ABC, abstractmethod
-
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
-
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-
-    def area(self):
-        return 3.14 * self.radius ** 2
-
-circle = Circle(5)
-print(circle.area())  # Output: 78.5
-```
-
-### 3. Inheritance
-
-Inheritance allows a class to inherit attributes and methods from another class.
-
-<img src="/api/placeholder/600/400" alt="Inheritance Diagram" />
-
-```python
-class Animal:
-    def __init__(self, name):
+```Python
+# Trieda je šablóna alebo návrh pre objekty.
+class Person:
+    # Konštruktor je špeciálna metóda, ktorá sa volá pri vytváraní novej inštancie objektu.
+    def __init__(self, name, age):
+        # Atribúty sú vlastnosti objektu.
         self.name = name
+        self.age = age
 
-    def speak(self):
-        pass
+    # Metóda je funkcia definovaná v rámci triedy. Poskytuje správanie pre objekt.
+    def introduce(self):
+        return f"Hi, my name is {self.name} and I am {self.age} years old."
 
-class Dog(Animal):
-    def speak(self):
-        return f"{self.name} says Woof!"
+# Inštancia je konkrétny objekt vytvorený z triedy.
+# Tu vytvárame dve inštancie triedy Person.
+person1 = Person("Alice", 30)
+person2 = Person("Bob", 25)
 
-class Cat(Animal):
-    def speak(self):
-        return f"{self.name} says Meow!"
+# Volanie metódy objektov.
+print(person1.introduce())  # Hi, my name is Alice and I am 30 years old.
+print(person2.introduce())  # Hi, my name is Bob and I am 25 years old.
 
-dog = Dog("Buddy")
-cat = Cat("Whiskers")
-
-print(dog.speak())  # Output: Buddy says Woof!
-print(cat.speak())  # Output: Whiskers says Meow!
+# Prístup k atribútom objektov.
+print(person1.name)  # Alice
+print(person2.age)   # 25
 ```
-
-### 4. Polymorphism
-
-Polymorphism allows objects of different classes to be treated as objects of a common base class.
-
-```python
-def animal_sound(animal):
-    print(animal.speak())
-
-animal_sound(dog)  # Output: Buddy says Woof!
-animal_sound(cat)  # Output: Whiskers says Meow!
-```
-
-## Advanced OOP Concepts
-
-### Composition
-
-Composition is a design principle that suggests a class can refer to one or more objects of other classes as instances rather than inheriting from them.
-
-```python
-class Engine:
-    def start(self):
-        return "Engine started"
-
-class Car:
-    def __init__(self):
-        self.engine = Engine()
-
-    def start(self):
-        return f"Car starting: {self.engine.start()}"
-
-my_car = Car()
-print(my_car.start())  # Output: Car starting: Engine started
-```
-
-### Method Overloading and Overriding
-
-Python doesn't support traditional method overloading, but we can simulate it:
-
-```python
-class Calculator:
-    def add(self, *args):
-        return sum(args)
-
-calc = Calculator()
-print(calc.add(1, 2))      # Output: 3
-print(calc.add(1, 2, 3))   # Output: 6
-```
-
-Method overriding is straightforward in Python:
-
-```python
-class Animal:
-    def make_sound(self):
-        print("Some generic animal sound")
-
-class Cat(Animal):
-    def make_sound(self):
-        print("Meow")
-
-generic_animal = Animal()
-cat = Cat()
-
-generic_animal.make_sound()  # Output: Some generic animal sound
-cat.make_sound()             # Output: Meow
-```
-
-## Conclusion
-
-Object-Oriented Programming is a powerful paradigm that provides a clear structure for programs, making it easier to maintain, modify and debug code. By understanding and applying the four pillars of OOP - encapsulation, abstraction, inheritance, and polymorphism - along with advanced concepts like composition and method overriding, you can create more efficient, flexible, and reusable code. While this article used Python for examples, these principles apply across many programming languages, forming a solid foundation for software development.
