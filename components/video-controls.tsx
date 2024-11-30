@@ -16,7 +16,7 @@ interface VideoPlayerControlsProps {
 export default function VideoPlayerControls({
   progress,
   size = 48,
-  width = 4,
+  width = 2.5,
   isPaused,
   className,
   onPlayPause,
@@ -62,7 +62,7 @@ export default function VideoPlayerControls({
           onClick={onPlayPause}
         >
           <div className=" fill-[#000000] group-hover:fill-[#000000] transition-colors duration-200 ease-in-out">
-            {isPaused ? <TIcons.play className="w-4 h-4" /> : <TIcons.pause className="w-5 h-5" />}
+            {isPaused ? <TIcons.play className="w-4 h-4 text-slate-900" /> : <TIcons.pause className="w-5 h-5 text-slate-900" />}
           </div>
         </button>
       </div>
