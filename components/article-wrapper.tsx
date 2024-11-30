@@ -87,16 +87,16 @@ export default function ArticleFilterWrapper({
                     )}
                     <span className="sr-only">
                       {filterPublished
-                        ? "curious about planned posts"
-                        : "only published posts"}
+                        ? "zvedavý na naplánované články?"
+                        : "len publikované články"}
                     </span>
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>
                     {filterPublished
-                      ? "curious about planned posts"
-                      : "only published posts"}
+                      ? "zvedavý na naplánované články?"
+                      : "len publikované články"}
                   </p>
                 </TooltipContent>
               </Tooltip>
