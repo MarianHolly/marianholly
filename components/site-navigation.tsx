@@ -39,10 +39,14 @@ export default function SiteNavigation() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
+                  passHref legacyBehavior
                     href={social.url}
                     className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
                   >
+                      <a target="_blank">
+
                     <social.icon className="size-4" />
+                    </a>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
