@@ -1,10 +1,11 @@
-import { getBlogPosts, getPost } from "@/lib/blog";
-import { DATA } from "@/lib/resume";
-import { formatDate } from "@/lib/utils";
-import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { getBlogPosts, getPost } from "@/lib/blog";
+import { formatDate } from "@/lib/utils";
+import { DATA } from "@/lib/resume";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();

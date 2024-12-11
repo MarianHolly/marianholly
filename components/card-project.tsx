@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Button } from "./ui/button";
 import VideoPlayerControls from "./video-controls";
 
 interface VideoPlayerProps {
@@ -26,7 +25,7 @@ interface ProjectCardProps {
   video?: string;
 }
 
-export default function VideoPlayer2({
+export default function ProjectCard({
   title,
   href,
   dates,

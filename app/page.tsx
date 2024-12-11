@@ -1,21 +1,23 @@
-import { DATA } from "@/lib/resume";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 import Link from "next/link";
 import Markdown from "react-markdown";
+
+// Components
 import BlurFade from "@/components/ui/blur-fade";
 import BlurFadeText from "@/components/ui/blur-fade-text";
-
-import BlogCard from "@/components/blog-card";
-import VideoPlayer2 from "@/components/card-project-v2";
-import GitHubRepos from "@/components/github-repos";
+import ShinyButton from "@/components/ui/shiny-button";
 import HoverMailCard from "@/components/hover-mail";
 
+// Cards
+import BlogCard from "@/components/card-blog";
+import ProjectCard from "@/components/card-project";
+import GitHubRepositories from "@/components/github-repositories"
+
 import { Button } from "@/components/ui/button";
-import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
-import { NotebookIcon } from "lucide-react";
-import ShinyButton from "@/components/ui/shiny-button";
+import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import { DATA } from "@/lib/resume";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -84,7 +86,7 @@ export default function Home() {
                 key={id}
                 className="flex flex-col space-y-3 items-center justify-center"
               >
-                <VideoPlayer2 {...project} />
+                <ProjectCard {...project} />
                 <div className="w-4/5">
                   <h2 className="text-center font-bold text-xl mb-2">
                     {project.title}
@@ -138,7 +140,7 @@ export default function Home() {
       </section>
 
       <section id="repositories" className="mb-12">
-        <GitHubRepos />
+        <GitHubRepositories />
       </section>
 
       <section id="blog">

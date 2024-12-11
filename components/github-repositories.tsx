@@ -13,7 +13,7 @@ import Link from "next/link";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function GitHubRepos() {
+export default function GitHubRepositories() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
