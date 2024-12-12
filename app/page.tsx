@@ -10,7 +10,7 @@ import HoverMailCard from "@/components/hover-mail";
 // Cards
 import BlogCard from "@/components/card-blog";
 import ProjectCard from "@/components/card-project";
-import GitHubRepositories from "@/components/github-repositories"
+import GitHubRepositories from "@/components/github-repositories";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,11 +36,11 @@ export default function Home() {
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
+                delay={BLUR_FADE_DELAY * 1.5}
                 text={DATA.description}
               />
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY}>
+            <BlurFade delay={BLUR_FADE_DELAY * 2}>
               <Avatar className="size-32 border">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
@@ -53,24 +53,23 @@ export default function Home() {
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold mb-2">O mne</h2>
         </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          
-        <div className="space-y-4">
-      {DATA.summary.map((text, index) => (
-        <Markdown 
-          key={index}
-          className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
-        >
-          {text}
-        </Markdown>
-      ))}
-    </div>
+        <BlurFade delay={BLUR_FADE_DELAY * 3.5}>
+          <div className="space-y-4">
+            {DATA.summary.map((text, index) => (
+              <Markdown
+                key={index}
+                className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
+              >
+                {text}
+              </Markdown>
+            ))}
+          </div>
         </BlurFade>
       </section>
 
       <section id="projects">
         <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
+          <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
@@ -88,7 +87,7 @@ export default function Home() {
             </div>
           </BlurFade>
 
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
+          <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
             {DATA.projects.map((project, id) => (
               <div
                 key={id}
@@ -153,7 +152,7 @@ export default function Home() {
 
       <section id="blog">
         <div className="space-y-12 w-full">
-          <BlurFade delay={BLUR_FADE_DELAY * 10}>
+          <BlurFade delay={BLUR_FADE_DELAY * 6}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
@@ -172,7 +171,7 @@ export default function Home() {
             </div>
           </BlurFade>
           <div className="space-y-12 w-full pt-4 pb-12">
-            <BlurFade delay={BLUR_FADE_DELAY + 0.12}>
+            <BlurFade delay={BLUR_FADE_DELAY * 6.5}>
               {DATA.featuredArticles.map((article, id) => (
                 <div key={id}>
                   <BlogCard
@@ -185,7 +184,7 @@ export default function Home() {
                 </div>
               ))}
               <div className="w-full mt-4 flex flex-col justify-center items-center">
-                <Link href='/blog'>
+                <Link href="/blog">
                   <ShinyButton>zvedavý na ostatné články?</ShinyButton>
                 </Link>
               </div>
@@ -196,7 +195,7 @@ export default function Home() {
 
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 12}>
+          <BlurFade delay={BLUR_FADE_DELAY * 7.5}>
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                 kontakt
