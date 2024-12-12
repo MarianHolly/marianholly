@@ -18,7 +18,7 @@ export default function GitHubRepositories() {
 
   return (
     <div className="space-y-12 w-full py-12">
-      <BlurFade delay={BLUR_FADE_DELAY * 5.5}>
+      <BlurFade delay={BLUR_FADE_DELAY * 7.5}>
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
@@ -37,7 +37,7 @@ export default function GitHubRepositories() {
         </div>
       </BlurFade>
 
-      <BlurFade delay={BLUR_FADE_DELAY * 6}>
+      <BlurFade delay={BLUR_FADE_DELAY * 8}>
         <ul className="flex flex-col gap-2">
           {DATA.repositories.map((repo, id) => (
             <div key={repo.title + repo.dates}>
