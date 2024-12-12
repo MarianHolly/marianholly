@@ -33,7 +33,7 @@ export default function SiteNavigation() {
         ))}
         <Separator orientation="vertical" className="h-full" />
         {Object.entries(DATA.contact.social)
-          .filter(([_, social]) => social.navbar)
+          .filter(([index, social]) => social.navbar)
           .map(([name, social]) => (
             <DockIcon key={name}>
               <Tooltip>
