@@ -8,8 +8,11 @@ export const DATA = {
   avatarUrl: "/avatar.jpg",
   description:
     "Front-end developer, samouk - React, Nextjs... Momentálne sa učím Python a Django. Minimalizmus v dizajne aj sociálnych sieťach.",
-  summary:
-    "Momentálne si rozširujem zručnosti získavaním certifikátu v [Pythone na Software Development Academy](https://sdacademy.sk/kurzy/python/), čo mi pomôže prejsť na backendový vývoj a analýzu dát. Okrem učenia sa Pythonu [píšem články o témach vo frontend vývoji](https://dev.to/), poznámky z python učenia, občas pár tipov a objevov vo web vývoji. Naďalej si prehlbujem zručnosti vo frontend-e a občas experimentujem s dizajnovaním.",
+  summary: [
+    "**JavaScript** ma priviedol k **Reactu**, ktorý rád kombinujem s *Typescriptom*, kde sa venujem tvorbe interaktívnych aplikácií. Baví ma dizajnovať s *Tailwind CSS* a *ShadcnUI*. Zaujímajú ma aj frameworky ako **Next.js, Astro** či **Vue**, ktoré skúmam, aby som rozšíril svoje zručnosti.",
+    "**Python** študujem na [Software Development Academy](https://sdacademy.sk/kurzy/python/), kde som zvládol základy aj pokročilejšie témy, testovanie aj OOP. Skúšam **Django** a čakajú ma **SQL** a dátové štruktúry. Svoje pokroky dokumentujem v článkoch.",    
+    "Hľadám príležitosť ponoriť sa do reálneho vývoja na skutočných projektoch. Chcem rásť ako programátor, naberať skúsenosti a zároveň priniesť hodnotu tímu, v ktorom budem vidieť výsledky svojej práce."
+  ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
@@ -44,7 +47,7 @@ export const DATA = {
   projects: [
     {
       title: "Bookish Retreat",
-      href: "videos/screen-capture-op.mp4",
+      href: "videos/bookish-retreat.mp4",
       dates: "Jan 2024 - Feb 2024",
       active: true,
       description:
@@ -99,7 +102,8 @@ export const DATA = {
   featuredArticles: [
     {
       title: "Python a OOP: Kompletný sprievodca pre programátorov",
-      subtitle: "Podrobný sprievodca OOP v Pythone, ktorý zahŕňa základné koncepty aj pokročilé témy, ako sú abstrakcia, polymorfizmus a metaklasy",
+      subtitle:
+        "Podrobný sprievodca OOP v Pythone, ktorý zahŕňa základné koncepty aj pokročilé témy, ako sú abstrakcia, polymorfizmus a metaklasy",
       publishedAt: "2024-09-22",
       summary:
         "Zisti, ako zvládnuť objektovo orientované programovanie (OOP) v Pythone od základov až po pokročilé techniky. Tento článok ponúka komplexný prehľad všetkého, čo potrebuješ vedieť na dosiahnutie excelentnej úrovne ako programátor.",

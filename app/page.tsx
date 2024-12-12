@@ -54,9 +54,17 @@ export default function Home() {
           <h2 className="text-xl font-bold mb-2">O mne</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            {DATA.summary}
-          </Markdown>
+          
+        <div className="space-y-4">
+      {DATA.summary.map((text, index) => (
+        <Markdown 
+          key={index}
+          className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
+        >
+          {text}
+        </Markdown>
+      ))}
+    </div>
         </BlurFade>
       </section>
 

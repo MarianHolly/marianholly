@@ -102,14 +102,14 @@ export default async function Blog({
               </p>
             </Suspense>
           </div>
-
+          
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}
             width={900}
             height={400}
             className="rounded-2xl mb-12"
-          />
+          /> 
         </div>
       </div>
 
