@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, Copy, X } from 'lucide-react'
+import { Check, Copy } from 'lucide-react'
 
 interface Position {
   top?: number | string

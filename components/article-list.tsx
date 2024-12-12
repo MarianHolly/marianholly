@@ -30,12 +30,12 @@ interface ArticleListProps {
 const BLUR_FADE_DELAY = 0.04;
 
 export default function ArticleList({ articles }: ArticleListProps) {
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const { filterPublished, categoryFilter, setCategoryFilter } =
     useFilterContext();
 
-  const categories: any[] = Array.from(
+  const categories: string[] = Array.from(
     new Set(articles.flatMap((article) => article.metadata.tags))
   );
 

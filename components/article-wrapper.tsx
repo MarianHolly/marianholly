@@ -4,7 +4,7 @@ import { createContext, useState, ReactNode, useContext } from "react";
 
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { EyeIcon, EyeOffIcon, RotateCcwIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import BlurFade from "./ui/blur-fade";
 
@@ -40,19 +40,19 @@ export default function ArticleFilterWrapper({
   const [categoryFilter, setCategoryFilter] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
-  const resetFilters = () => {
-    setFilterPublished(true);
-    setCategoryFilter("");
-    setSortOrder("desc");
-  };
+  // const resetFilters = () => {
+  //   setFilterPublished(true);
+  //   setCategoryFilter("");
+  //   setSortOrder("desc");
+  // };
 
   const toggleFilter = () => {
     setFilterPublished((prev) => !prev);
   };
 
-  const toggleSortOrder = () => {
-    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-  };
+  // const toggleSortOrder = () => {
+  //   setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  // };
 
   return (
     <FilterContext.Provider

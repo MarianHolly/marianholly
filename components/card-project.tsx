@@ -3,10 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import VideoPlayerControls from "./video-controls";
 
-interface VideoPlayerProps {
-  src: string;
-}
-
 interface ProjectLink {
   type: string;
   href: string;
@@ -25,17 +21,7 @@ interface ProjectCardProps {
   video?: string;
 }
 
-export default function ProjectCard({
-  title,
-  href,
-  dates,
-  active,
-  description,
-  technologies,
-  links,
-  image,
-  video,
-}: ProjectCardProps) {
+export default function ProjectCard({ href }: ProjectCardProps) {
   const [videoProgress, setVideoProgress] = useState<number>(0);
   const [videoDuration, setVideoDuration] = useState<number>();
   const [isPaused, setIsPaused] = useState(false);
@@ -52,7 +38,7 @@ export default function ProjectCard({
     if (isPaused) return;
     const currentTime = videoRef.current?.currentTime;
     if (videoDuration != null && currentTime != null) {
-      let loadingTimeout = setTimeout(() => {
+      const loadingTimeout = setTimeout(() => {
         if (videoProgress == currentTime / videoDuration) {
           setVideoProgress((prev) => prev + 0.000001);
         } else {
