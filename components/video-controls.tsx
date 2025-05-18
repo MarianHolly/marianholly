@@ -31,7 +31,13 @@ export default function VideoPlayerControls({
 
   return (
     <div className={`relative flex justify-center items-center ${className}`}>
-      <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+      <svg
+        width={size}
+        height={size}
+        style={{ transform: "rotate(-90deg)" }}
+        role="img"
+        aria-label="Video progress indicator"
+      >
         <circle
           r={radius}
           cx={center}
@@ -58,11 +64,17 @@ export default function VideoPlayerControls({
       </svg>
       <div className="absolute">
         <button
+          type="button"
           className="group cursor-pointer flex justify-center items-center"
           onClick={onPlayPause}
+          aria-label={isPaused ? "Play video" : "Pause video"}
         >
           <div className=" fill-[#000000] group-hover:fill-[#000000] transition-colors duration-200 ease-in-out">
-            {isPaused ? <TIcons.play className="w-4 h-4 text-slate-900" /> : <TIcons.pause className="w-5 h-5 text-slate-900" />}
+            {isPaused ? (
+              <TIcons.play className="w-4 h-4 text-slate-900" />
+            ) : (
+              <TIcons.pause className="w-5 h-5 text-slate-900" />
+            )}
           </div>
         </button>
       </div>

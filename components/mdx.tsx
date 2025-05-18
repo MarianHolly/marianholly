@@ -4,8 +4,8 @@ import Image from "next/image";
 import type { MDXComponents } from 'mdx/types';
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
-  const headers = data.headers.map((header, index) => (
-    <th key={`header-${header}-${index}`}>{header}</th>
+  const headers = data.headers.map((header) => (
+    <th key={`header-${header}`}>{header}</th>
   ));
   const rows = data.rows.map((row, rowIndex) => (
     <tr key={`row-${rowIndex}-${row.join('-').slice(0, 20)}`}>

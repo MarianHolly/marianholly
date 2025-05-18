@@ -1,91 +1,37 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { AnimatePresence, Transition, motion } from 'framer-motion';
-import {
-  Children,
-  cloneElement,
-  ReactElement,
-  useEffect,
-  useState,
-  useId,
-} from 'react';
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { HTMLAttributes } from "react";
 
-type AnimatedBackgroundProps = {
-  children:
-    | ReactElement<{ 'data-id': string }>[]
-    | ReactElement<{ 'data-id': string }>;
-  defaultValue?: string;
-  onValueChange?: (newActiveId: string | null) => void;
-  className?: string;
-  transition?: Transition;
-  enableHover?: boolean;
-};
+import { cn } from "@/lib/utils";
 
-export default function AnimatedBackground({
-  children,
-  defaultValue,
-  onValueChange,
-  className,
-  transition,
-  enableHover = false,
-}: AnimatedBackgroundProps) {
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const uniqueId = useId();
-
-  const handleSetActiveId = (id: string | null) => {
-    setActiveId(id);
-
-    if (onValueChange) {
-      onValueChange(id);
-    }
-  };
-
-  useEffect(() => {
-    if (defaultValue !== undefined) {
-      setActiveId(defaultValue);
-    }
-  }, [defaultValue]);
-
-  return Children.map(children, (child: any, index) => {
-    const id = child.props['data-id'];
-
-    const interactionProps = enableHover
-      ? {
-          onMouseEnter: () => handleSetActiveId(id),
-          onMouseLeave: () => handleSetActiveId(null),
-        }
-      : {
-          onClick: () => handleSetActiveId(id),
-        };
-
-    return cloneElement(
-      child,
-      {
-        key: index,
-        className: cn('relative inline-flex', child.props.className),
-        'aria-selected': activeId === id,
-        'data-checked': activeId === id ? 'true' : 'false',
-        ...interactionProps,
+const badgeVariants = cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary:
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive:
+          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground",
       },
-      <>
-        <AnimatePresence initial={false}>
-          {activeId === id && (
-            <motion.div
-              layoutId={`background-${uniqueId}`}
-              className={cn('absolute inset-0', className)}
-              transition={transition}
-              initial={{ opacity: defaultValue ? 1 : 0 }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-              }}
-            />
-          )}
-        </AnimatePresence>
-        <span className='z-10'>{child.props.children}</span>
-      </>
-    );
-  });
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+export interface BadgeProps
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof badgeVariants> {}
+
+function Badge({ className, variant, ...props }: BadgeProps) {
+  return (
+    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+  );
 }
+
+export { Badge, badgeVariants };

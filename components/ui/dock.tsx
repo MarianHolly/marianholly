@@ -1,89 +1,77 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
+import { useRef, useState } from "react";
+import type { PropsWithChildren } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import React, { PropsWithChildren, useRef } from "react";
 
-export interface DockProps extends VariantProps<typeof dockVariants> {
+import { cn } from "@/lib/utils";
+
+export interface DockProps extends PropsWithChildren {
   className?: string;
   magnification?: number;
   distance?: number;
-  children: React.ReactNode;
+  direction?: "top" | "middle" | "bottom";
 }
 
 const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 
-const dockVariants = cva(
-  "mx-auto w-max h-full p-2 flex items-end rounded-full border"
-);
-
-const Dock = React.forwardRef<HTMLDivElement, DockProps>(
-  (
-    {
-      className,
-      children,
-      magnification = DEFAULT_MAGNIFICATION,
-      distance = DEFAULT_DISTANCE,
-      ...props
-    },
-    ref
-  ) => {
-    const mousex = useMotionValue(Infinity);
-
-    const renderChildren = () => {
-      return React.Children.map(children, (child: any) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            mousex,
-            magnification,
-            distance,
-          } as DockIconProps);
-        }
-        return child;
-      });
-    };
-
-    return (
-      <motion.div
-        ref={ref}
-        onMouseMove={(e) => mousex.set(e.pageX)}
-        onMouseLeave={() => mousex.set(Infinity)}
-        {...props}
-        className={cn(dockVariants({ className }))}
-      >
-        {renderChildren()}
-      </motion.div>
-    );
-  }
-);
-
-Dock.displayName = "Dock";
-
-export interface DockIconProps {
-  magnification?: number;
-  distance?: number;
-  mousex?: any;
-  className?: string;
-  children?: React.ReactNode;
-  props?: PropsWithChildren;
-}
-
-const DockIcon = ({
-  magnification = DEFAULT_MAGNIFICATION,
-  distance = DEFAULT_DISTANCE,
-  mousex,
+export function Dock({
   className,
   children,
-  ...props
-}: DockIconProps) => {
+  magnification = DEFAULT_MAGNIFICATION,
+  distance = DEFAULT_DISTANCE,
+  direction = "bottom",
+}: DockProps) {
+  const mouseX = useMotionValue(Number.POSITIVE_INFINITY);
+
+  const renderChildren = () => {
+    return children;
+  };
+
+  return (
+    <motion.div
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Number.POSITIVE_INFINITY)}
+      className={cn(
+        "mx-auto flex h-16 items-end gap-4 rounded-2xl border bg-background px-4 pb-3",
+        {
+          "items-start": direction === "top",
+          "items-center": direction === "middle",
+          "items-end": direction === "bottom",
+        },
+        className
+      )}
+    >
+      {renderChildren()}
+    </motion.div>
+  );
+}
+
+export interface DockIconProps {
+  size?: number;
+  magnification?: number;
+  distance?: number;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function DockIcon({
+  size = 40,
+  magnification = DEFAULT_MAGNIFICATION,
+  distance = DEFAULT_DISTANCE,
+  children,
+  className,
+}: DockIconProps) {
   const ref = useRef<HTMLDivElement>(null);
 
-  const distanceCalc = useTransform(mousex, (val: number) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
-  });
+  const distanceCalc = useTransform(
+    useMotionValue(Number.POSITIVE_INFINITY),
+    (val: number) => {
+      const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+      return val - bounds.x - bounds.width / 2;
+    }
+  );
 
   const widthSync = useTransform(
     distanceCalc,
@@ -105,13 +93,8 @@ const DockIcon = ({
         "flex aspect-square cursor-pointer items-center justify-center rounded-full",
         className
       )}
-      {...props}
     >
       {children}
     </motion.div>
   );
-};
-
-DockIcon.displayName = "DockIcon";
-
-export { Dock, DockIcon, dockVariants };
+}

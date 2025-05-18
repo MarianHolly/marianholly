@@ -28,6 +28,7 @@ export const LinkPreview = ({
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
+
   let src;
   if (!isStatic) {
     const params = encode({
