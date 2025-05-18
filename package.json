@@ -32,6 +32,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.452.0",
     "next": "14.2.15",
+    "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
     "qss": "^3.0.0",
     "react": "^18",
@@ -49,6 +50,7 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
+    "@types/mdx": "^2.0.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -61,6 +63,9 @@
   "rules": {
     "unicorn/prefer-node-protocol": "error",
     "no-else-return": "error",
-    "no-restricted-globals": ["error", "isNaN"]
+    "no-restricted-globals": [
+      "error",
+      "isNaN"
+    ]
   }
 }

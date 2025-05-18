@@ -1,15 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import type { MDXComponents } from 'mdx/types';
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
+    <th key={`header-${header}-${index}`}>{header}</th>
   ));
-  const rows = data.rows.map((row, index) => (
-    <tr key={index}>
+  const rows = data.rows.map((row, rowIndex) => (
+    <tr key={`row-${rowIndex}-${row.join('-').slice(0, 20)}`}>
       {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
+        <td key={`cell-${rowIndex}-${cellIndex}-${cell.slice(0, 10)}`}>{cell}</td>
       ))}
     </tr>
   ));
@@ -24,10 +25,10 @@ function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   );
 }
 
-function CustomLink(props: any) {
+function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const href = props.href;
 
-  if (href.startsWith("/")) {
+  if (href?.startsWith("/")) {
     return (
       <Link href={href} {...props}>
         {props.children}
@@ -35,15 +36,36 @@ function CustomLink(props: any) {
     );
   }
 
-  if (href.startsWith("#")) {
+  if (href?.startsWith("#")) {
     return <a {...props} />;
   }
 
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
-function RoundedImage(props: any) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement> & {
+  src?: string;
+  alt?: string;
+  width?: number | string;
+  height?: number | string;
+}) {
+  const { src, alt = "", width, height, className, ...restProps } = props;
+  
+  if (!src) {
+    return null;
+  }
+
+  // Convert props to the format Next.js Image expects
+  const imageProps = {
+    src,
+    alt,
+    className: `rounded-lg ${className || ''}`.trim(),
+    ...(width && { width: typeof width === 'string' ? Number.parseInt(width, 10) : width }),
+    ...(height && { height: typeof height === 'string' ? Number.parseInt(height, 10) : height }),
+    ...restProps
+  };
+
+  return <Image {...imageProps} />;
 }
 
 // This replaces rehype-slug
@@ -58,9 +80,10 @@ function slugify(str: string) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
-function createHeading(level: number) {
-  const Heading = ({ children }: { children: React.ReactNode }) => {
-    const slug = slugify(children as string);
+function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
+  const Heading = (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const { children, ...rest } = props;
+    const slug = slugify(children?.toString() || "");
 
     const sizeClasses = {
       1: "text-4xl font-bold",
@@ -75,7 +98,8 @@ function createHeading(level: number) {
       `h${level}`,
       { 
         id: slug, 
-        className: sizeClasses[level as keyof typeof sizeClasses]
+        className: sizeClasses[level],
+        ...rest
       },
       [
         React.createElement("a", {
@@ -91,14 +115,14 @@ function createHeading(level: number) {
   return Heading;
 }
 
-export const globalComponents = {
+export const globalComponents: MDXComponents = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  Image: RoundedImage,
+  img: RoundedImage,
   a: CustomLink,
   Table,
 };

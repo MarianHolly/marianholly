@@ -57,7 +57,7 @@ export default function Home() {
           <div className="space-y-4">
             {DATA.summary.map((text, index) => (
               <Markdown
-                key={index}
+                key={`summary-${index}-${text.slice(0, 30)}`}
                 className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
               >
                 {text}
@@ -90,7 +90,7 @@ export default function Home() {
           <BlurFade delay={BLUR_FADE_DELAY * 6.5}>
             {DATA.projects.map((project, id) => (
               <div
-                key={id}
+                key={`${project.title}-${project.dates}`}
                 className="flex flex-col space-y-3 items-center justify-center"
               >
                 <ProjectCard {...project} />
@@ -105,7 +105,7 @@ export default function Home() {
                     {project.technologies.map((tech, id) => (
                       <Badge
                         variant="outline"
-                        key={id}
+                        key={`${project.title}-tech-${tech}`}
                         className="text-center text-xs text-muted-foreground px-1 py-0.5"
                       >
                         {tech}
@@ -114,7 +114,11 @@ export default function Home() {
                   </div>
                   <div className="flex flex-row space-x-2 justify-center">
                     <Link href={project.githubHref} passHref legacyBehavior>
-                      <a target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={project.githubHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Button
                           variant="outline"
                           size="icon"
@@ -127,7 +131,11 @@ export default function Home() {
 
                     {project.websiteHref && (
                       <Link href={project.websiteHref} passHref legacyBehavior>
-                        <a target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={project.githubHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <Button
                             variant="outline"
                             size="icon"
@@ -173,7 +181,7 @@ export default function Home() {
           <div className="space-y-12 w-full pt-4 pb-12">
             <BlurFade delay={BLUR_FADE_DELAY * 8.5}>
               {DATA.featuredArticles.map((article, id) => (
-                <div key={id}>
+                <div key={article.slug}>
                   <BlogCard
                     id={id}
                     slug={article.slug}
@@ -210,7 +218,12 @@ export default function Home() {
                   passHref
                   legacyBehavior
                 >
-                  <a target="_blank" rel="noopener noreferrer" className="text-cyan-700 hover:underline">
+                  <a
+                    href={DATA.contact.social.LinkedIn.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cyan-700 hover:underline"
+                  >
                     LinkedIn
                   </a>
                 </Link>

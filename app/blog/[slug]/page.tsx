@@ -7,9 +7,8 @@ import { getBlogPosts, getPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import { DATA } from "@/lib/resume";
 
-import ReactMarkdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
-import rehypeSanitize from 'rehype-sanitize'
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { globalComponents } from '@/components/mdx';
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -24,6 +23,10 @@ export async function generateMetadata({
   };
 }): Promise<Metadata | undefined> {
   const post = await getPost(params.slug);
+
+  if (!post) {
+    return undefined;
+  }
 
   const { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
   const ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
@@ -52,6 +55,26 @@ export async function generateMetadata({
   };
 }
 
+// Helper function to generate JSON-LD safely
+function generateJsonLd(post: NonNullable<Awaited<ReturnType<typeof getPost>>>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.metadata.title,
+    datePublished: post.metadata.publishedAt,
+    dateModified: post.metadata.publishedAt,
+    description: post.metadata.summary,
+    image: post.metadata.image
+      ? `${DATA.url}${post.metadata.image}`
+      : `${DATA.url}/og?title=${post.metadata.title}`,
+    url: `${DATA.url}/blog/${post.slug}`,
+    author: {
+      "@type": "Person",
+      name: DATA.name,
+    },
+  };
+}
+
 export default async function Blog({
   params,
 }: {
@@ -65,30 +88,17 @@ export default async function Blog({
     notFound();
   }
 
+  // Create JSON-LD script content
+  const jsonLd = generateJsonLd(post);
+
   return (
     <section id="blog">
       <script
         type="application/ld+json"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${DATA.url}${post.metadata.image}`
-              : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/blog/${post.slug}`,
-            author: {
-              "@type": "Person",
-              name: DATA.name,
-            },
-          }),
-        }}
-      />
+      >
+        {JSON.stringify(jsonLd)}
+      </script>
 
       <div id="header" className="max-w-4xl mx-auto">
         <div className="w-full flex flex-col justify-between items-center">
@@ -107,20 +117,21 @@ export default async function Blog({
             </Suspense>
           </div>
           
-          <Image
-            src={post.metadata.image}
-            alt={post.metadata.title}
-            width={900}
-            height={400}
-            className="rounded-2xl mb-12"
-          /> 
+          {post.metadata.image && (
+            <Image
+              src={post.metadata.image}
+              alt={post.metadata.title}
+              width={900}
+              height={400}
+              className="rounded-2xl mb-12"
+            /> 
+          )}
         </div>
       </div>
 
-      <article
-        className="prose dark:prose-invert max-w-3xl mx-auto text-sm"
-        dangerouslySetInnerHTML={{ __html: post.source }}
-      />
+      <article className="prose dark:prose-invert max-w-3xl mx-auto text-sm">
+        <MDXRemote source={post.source} components={globalComponents} />
+      </article>
     </section>
   );
 }
