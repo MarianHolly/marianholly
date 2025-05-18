@@ -68,7 +68,7 @@ export default function GitHubRepositories() {
                   <Card isHovered={hoveredIndex === id}>
                     <div className="w-24 md:w-32 flex items-center justify-center pl-3 flex-row gap-3">
                       <Link href={repo.githubHref} passHref legacyBehavior>
-                        <a target="_blank">
+                        <a target="_blank" rel="noopener noreferrer">
                           <Button
                             variant="outline"
                             size="icon"
@@ -81,7 +81,7 @@ export default function GitHubRepositories() {
 
                       {repo.websiteHref && (
                         <Link href={repo.websiteHref} passHref legacyBehavior>
-                          <a target="_blank">
+                          <a target="_blank" rel="noopener noreferrer">
                             <Button
                               variant="outline"
                               size="icon"

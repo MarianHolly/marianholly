@@ -43,7 +43,7 @@ export default function SiteNavigation() {
                     href={social.url}
                     className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
                   >
-                      <a target="_blank">
+                      <a target="_blank" rel="noopener noreferrer">
 
                     <social.icon className="size-4" />
                     </a>

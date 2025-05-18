@@ -53,7 +53,7 @@ export function formatDate(date: string) {
     const monthsAgo = Math.floor(daysAgo / 30);
     return `${fullDate} (pred ${monthsAgo} mesiacmi)`;
   } else if (daysAgo < 730) {
-    return "Minulý rok";
+    return "minulý rok";
   } else {
     const yearsAgo = Math.floor(daysAgo / 365);
     return `${fullDate} (pred ${yearsAgo} rokmi)`;

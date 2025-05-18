@@ -7,6 +7,10 @@ import { getBlogPosts, getPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import { DATA } from "@/lib/resume";
 
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -116,7 +120,7 @@ export default async function Blog({
       <article
         className="prose dark:prose-invert max-w-3xl mx-auto text-sm"
         dangerouslySetInnerHTML={{ __html: post.source }}
-      ></article>
+      />
     </section>
   );
 }

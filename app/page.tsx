@@ -114,7 +114,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-row space-x-2 justify-center">
                     <Link href={project.githubHref} passHref legacyBehavior>
-                      <a target="_blank">
+                      <a target="_blank" rel="noopener noreferrer">
                         <Button
                           variant="outline"
                           size="icon"
@@ -127,7 +127,7 @@ export default function Home() {
 
                     {project.websiteHref && (
                       <Link href={project.websiteHref} passHref legacyBehavior>
-                        <a target="_blank">
+                        <a target="_blank" rel="noopener noreferrer">
                           <Button
                             variant="outline"
                             size="icon"
@@ -210,7 +210,7 @@ export default function Home() {
                   passHref
                   legacyBehavior
                 >
-                  <a target="_blank" className="text-cyan-700 hover:underline">
+                  <a target="_blank" rel="noopener noreferrer" className="text-cyan-700 hover:underline">
                     LinkedIn
                   </a>
                 </Link>

@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     template: `%s | ${DATA.name}`,
   },
   description: DATA.description,
+  icons: {
+    icon: "/dev-icon.svg",
+    shortcut: "/dev-icon.svg",
+    apple: "/dev-icon.svg",
+  },
 };
 
 export default function RootLayout({
