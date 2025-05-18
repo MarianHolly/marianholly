@@ -1,8 +1,8 @@
 ## Hello, I'm Marián Holly 👋
 
-### Full-Stack Developer | Python & React Specialist
+## Full-Stack Developer | Python & React Specialist
 
-#### 🚀 Professional Focus
+### 🚀 Professional Focus
 
 **Current Status:** Actively seeking junior developer opportunities where I can contribute my full-stack expertise and passion for continuous learning.
 
@@ -11,7 +11,7 @@
 - **Backend Development**: Python, Django
 - **Development Practices**: Git workflows, Testing
 
-#### 💼 Professional Journey
+### 💼 Professional Journey
 
 **Self-Taught Frontend Developer** → **Python/Django Certified Developer**
 - Started with HTML, CSS, JavaScript fundamentals
@@ -19,9 +19,10 @@
 - Completed comprehensive Python Software Development course
 - Specialized in Django framework 
 
-#### 🎯 Current Projects
+### 🎯 Current Projects
 
 🔨 **[Blog Platform](link)** - Django-powered content management system with roles and permissions
+
 📚 **[Bookish Bliss](link)** - React/TypeScript bookshore application with Stripe integration
 
 ### 🌐 Let's Connect
