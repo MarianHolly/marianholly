@@ -28,3 +28,16 @@ In my plans for future, other than become better at what I already know, I would
 <a/>
 
 
+## 👋 Hi, I'm Marián Holly
+
+**🎯 Currently:** Seeking junior developer opportunities | Finishing Django blog platform project
+**💡 Focus:** React/Next.js • Python/Django • Data Analytics exploration
+**🌱 Learning:** Advanced Python patterns, testing best practices, data visualization
+
+### 🛠️ Tech Stack
+**Frontend:** React, Next.js, TypeScript, Tailwind CSS, Shadcn UI
+**Backend:** Python, Django, SQL databases
+**Tools:** Git, Vercel, Stripe integration, REST APIs
+
+### 📫 Let's Connect
+[Your LinkedIn] | [Your email] | [Your portfolio site]
