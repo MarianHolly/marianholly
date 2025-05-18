@@ -23,7 +23,7 @@ Other noteworthy libraries and technologies, **Redux Toolkit** and **Zustand** f
 
 In my plans for future, other than become better at what I already know, I would like to learn testing react applications, creating backend with Nodejs, MongoDb, Prisma,... and developing also mobile applications with React Native.
 
-<a href='https://www.linkedin.com/in/marian-holly-8b73bb242/'>
+<a href=''>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" height="42px" width="42px" />
 <a/>
 
