@@ -4,24 +4,12 @@ import { useMemo, useState } from "react";
 import { cn, formatDateShort } from "@/lib/utils";
 import { useFilterContext } from "./article-wrapper";
 import { AnimatePresence, motion } from "framer-motion";
+import type { Article } from "@/lib/types";
 
 import { Button } from "./ui/button";
 import { TIcons } from "./icons";
 import { Separator } from "./ui/separator";
 import BlurFade from "./ui/blur-fade";
-
-interface Article {
-  slug: string;
-  metadata: {
-    title: string;
-    subtitle: string;
-    publishedAt: string;
-    summary: string;
-    image?: string;
-    tags: string[];
-    published: boolean;
-  };
-}
 
 interface ArticleListProps {
   articles: Article[];
@@ -79,6 +67,7 @@ export default function ArticleList({ articles }: ArticleListProps) {
               return (
                 <Button
                   key={category}
+                  type="button"
                   variant={activeCategory === category ? "outline" : "ghost"}
                   size="icon"
                   className="rounded-full p-1 w-11 h-11"
@@ -163,12 +152,6 @@ export default function ArticleList({ articles }: ArticleListProps) {
                               {article.metadata.subtitle}
                             </span>
                           )}
-                          {/*
-                            <p className="text-xs pt-1 text-gray-700">
-                              Category: <span className="font-semibold">{article.metadata.tags}</span>{" "}
-                              | Status: {article.metadata.published ? "Published" : "Draft"}
-                            </p>
-                          */}
                         </div>
                       </div>
                     </div>

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { getBlogPosts, getPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import { DATA } from "@/lib/resume";
+import type { FullArticle } from "@/lib/types";
 
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { globalComponents } from '@/components/mdx';
@@ -33,10 +34,10 @@ export async function generateMetadata({
 
   return {
     title,
-    description,
+    description: description || title,
     openGraph: {
       title,
-      description,
+      description: description || title,
       type: "article",
       publishedTime,
       url: `${DATA.url}/blog/${post.slug}`,
@@ -49,21 +50,21 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: description || title,
       images: [ogImage],
     },
   };
 }
 
-// Helper function to generate JSON-LD safely
-function generateJsonLd(post: NonNullable<Awaited<ReturnType<typeof getPost>>>) {
+// Helper function to generate JSON-LD safely with proper typing
+function generateJsonLd(post: FullArticle) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.metadata.title,
     datePublished: post.metadata.publishedAt,
     dateModified: post.metadata.publishedAt,
-    description: post.metadata.summary,
+    description: post.metadata.summary || post.metadata.title,
     image: post.metadata.image
       ? `${DATA.url}${post.metadata.image}`
       : `${DATA.url}/og?title=${post.metadata.title}`,
@@ -88,6 +89,7 @@ export default async function Blog({
     notFound();
   }
 
+  // At this point, TypeScript knows post is not null
   // Create JSON-LD script content
   const jsonLd = generateJsonLd(post);
 
@@ -105,9 +107,11 @@ export default async function Blog({
           <h1 className="text-center font-bold text-4xl tracking-wider mb-2">
             {post.metadata.title}
           </h1>
-          <h2 className="text-center font-light text-xl tracking-wider">
-            {post.metadata.subtitle}
-          </h2>
+          {post.metadata.subtitle && (
+            <h2 className="text-center font-light text-xl tracking-wider">
+              {post.metadata.subtitle}
+            </h2>
+          )}
 
           <div className="flex justify-between items-center mt-2 mb-4 text-sm font-semibold">
             <Suspense fallback={<p className="h-5" />}>

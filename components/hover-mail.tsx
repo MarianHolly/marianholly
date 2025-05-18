@@ -1,5 +1,6 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import type React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Copy } from 'lucide-react'
 
@@ -95,6 +96,7 @@ export default function HoverMailCard({ trigger, content, position = {} }: Hover
           >
             <div className="text-sm rounded-2xl shadow-xl p-2 text-cyan-600  dark:text-cyan-400 text-center font-medium border border-cyan-600 dark:border-cyan-400 bg-white dark:bg-gray-800">
             <button
+                type="button"
                 onClick={handleCopy}
                 className="flex items-center justify-center space-x-2 w-full rounded-md p-1"
                 aria-label={isCopied ? "Copied to clipboard" : "Copy to clipboard"}

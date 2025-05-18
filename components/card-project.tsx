@@ -39,7 +39,7 @@ export default function ProjectCard({ href }: ProjectCardProps) {
     const currentTime = videoRef.current?.currentTime;
     if (videoDuration != null && currentTime != null) {
       const loadingTimeout = setTimeout(() => {
-        if (videoProgress == currentTime / videoDuration) {
+        if (videoProgress === currentTime / videoDuration) {
           setVideoProgress((prev) => prev + 0.000001);
         } else {
           setVideoProgress(currentTime / videoDuration);

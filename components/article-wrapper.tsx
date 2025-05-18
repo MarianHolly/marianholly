@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useState, ReactNode, useContext } from "react";
+import { createContext, useState, useContext } from "react";
+import type { ReactNode } from "react";
 
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
@@ -73,6 +74,7 @@ export default function ArticleFilterWrapper({
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
+                    type="button"
                     variant="ghost"
                     size="icon"
                     className={`rounded-full p-1 ${
@@ -100,26 +102,6 @@ export default function ArticleFilterWrapper({
                   </p>
                 </TooltipContent>
               </Tooltip>
-
-              {/*
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`rounded-full p-1 ${
-                      filterPublished ? "text-primary" : "text-muted-foreground"
-                    }`}
-                    onClick={resetFilters}
-                  >
-                    <RotateCcwIcon className="h-12 w-12" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>reset</p>
-                </TooltipContent>
-              </Tooltip>
-            */}
             </div>
           </div>
 

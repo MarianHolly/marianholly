@@ -13,12 +13,12 @@ export default function BlogCard({
   slug,
 }: {
   title: string;
-  summary: string;
-  id: number;
+  summary?: string;
+  id: number | string;
   publishedAt: string;
   slug: string;
 }) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<string | number | null>(null);
 
   return (
     <div
