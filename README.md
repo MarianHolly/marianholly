@@ -21,9 +21,9 @@
 
 ### 🎯 Current Projects
 
-🔨 **[Blog Platform](link)** - Django-powered content management system with roles and permissions
+🔨 **[Blog Platform](https://github.com/MarianHolly/blog_platform)** - Django-powered content management system with roles and permissions
 
-📚 **[Bookish Bliss](link)** - React/TypeScript bookshore application with Stripe integration
+📚 **[Bookish Bliss](https://github.com/MarianHolly/bookish-bliss)** - React/TypeScript bookshore application with Stripe integration
 
 ### 🌐 Let's Connect
 
