@@ -8,52 +8,21 @@ My approach to development focuses on building solid foundations in key technolo
 ### Technical Proficiencies
 
 #### Frontend Development
-- **Core Technologies**: JavaScript, React, Next.js, TypeScript
-- **Styling & UI**: Tailwind CSS, Component Libraries (Shadcn Ui)
-- **Current Development**: Expanding expertise in Vue.js and Nuxt.js frameworks
-- **Learning Path**: Self-taught progression from fundamental web technologies to modern JavaScript frameworks
+- **Current**: JavaScript (self-taught), React, Next.js, TypeScript, Tailwind CSS
+- **Learning**: Vue.js and Nuxt.js to diversify framework expertise
 
 #### Backend Development
-- **Primary Stack**: Python, Django (Course Certified)
-- **Database Management**: SQL
-- **Current Focus**: Advancing Django proficiency and learning FastAPI
+- **Current**: Python, Django (course-certified), SQL
+- **Developing**: Advanced Django practices and FastAPI for modern API development
 
-#### Data Analysis & Visualization
-- **Database Technologies**: SQL optimization and advanced querying
-- **Data Processing**: Pandas library (currently developing)
-- **Visualization Goals**: Matplotlib and Seaborn integration (planned)
+#### Data Analysis
+- **Current**: SQL optimization and database operations
+- **Learning**: Pandas for data manipulation, planning Matplotlib and Seaborn for visualization
 
-#### Emerging Technologies
-- **Artificial Intelligence**: Pursuing machine learning and deep learning fundamentals
-- **Future Specialization**: Transitioning toward AI-driven development solutions
+#### Future Specialization
+Working toward machine learning and deep learning as the next major development phase.
 
-### 🎯 Featured Projects
-
-🔨 **[Blog Platform](https://github.com/MarianHolly/blog_platform)**
-- Technology Stack: Django, Python, SQL
-- Description: Comprehensive content management system featuring role-based access control, user authentication, and administrative permissions architecture.
-
-📚 **[Bookish Bliss](https://github.com/MarianHolly/bookish-bliss)**
-- Technology Stack: React, TypeScript, Stripe API
-- Description: E-commerce bookstore application with integrated payment processing, inventory management, and responsive user interface design.
-
-### Professional Development Trajectory
-#### Phase 1: Frontend Foundation (Self-Taught)
-- Mastered HTML, CSS, JavaScript fundamentals
-- Advanced to React and Next.js ecosystem
-
-#### Phase 2: Backend Integration (Formally Trained)
-- Completed comprehensive Python Software Development certification
-- Specialized in Django framework architecture
-
-#### Phase 3: Full-Stack Consolidation (Current)
-- Strengthening React and Next.js expertise
-- Expanding backend capabilities with FastAPI
-- Developing data analysis competencies
-
-#### Phase 4: AI Integration (Planned)
-- Machine learning implementation
-- Deep learning application development
+<hr />
 
 ### 🌐 Professional Contact Information
 
