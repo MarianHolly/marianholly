@@ -29,6 +29,7 @@ Working toward machine learning and deep learning as the next major development 
 - **LinkedIn:** [Marian Holly](https://www.linkedin.com/in/marian-holly-291b62306/)
 - **Email:** [marian.holly7117@gmail.com](mailto:marian.holly7117@gmail.com)
 - **Portfolio:** [https://marian-holly.vercel.app/]
+- **Kaggle:** [https://www.kaggle.com/marinholl]
 - **Location:** Slovakia 🇸🇰 | Open to Remote Opportunities
 
 ### Availability
