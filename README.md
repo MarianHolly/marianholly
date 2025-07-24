@@ -6,14 +6,9 @@ I'm a self-taught frontend developer who has expanded into full-stack developmen
 My approach to development focuses on building solid foundations in key technologies while progressively expanding my expertise across the full development stack.
 
 ### Technical Proficiencies
-
-#### Frontend Development
-- **Current**: JavaScript (self-taught), React, Next.js, TypeScript, Tailwind CSS
-- **Learning**: Vue.js and Nuxt.js to diversify framework expertise
-
-#### Backend Development
-- **Current**: Python, Django (course-certified), SQL
-- **Developing**: Advanced Django practices and FastAPI for modern API development
+- **Programming Languages**: Python (course-certified)
+- **Frontend Development**: JavaScript (self-taught), React, Next.js, TypeScript, Tailwind CSS
+- **Backend Development**: Django, Next.js, Django REST Framework
 
 #### Data Analysis
 - **Current**: SQL optimization and database operations
