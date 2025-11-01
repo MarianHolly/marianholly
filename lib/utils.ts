@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { DATE_FORMAT } from "@/lib/constants";
+import { DATE_FORMAT, VALIDATION } from "@/lib/constants";
 
 /**
  * Merge Tailwind CSS classes intelligently
@@ -115,4 +115,54 @@ export function formatDate(date: string): string {
 export function isValidNumber(value: unknown): value is number {
   const numValue = Number(value);
   return !Number.isNaN(numValue) && Number.isFinite(numValue);
+}
+
+/**
+ * Validate if a string matches email pattern
+ * @param email - Email string to validate
+ * @returns True if email format is valid
+ */
+export function isValidEmail(email: string): boolean {
+  return VALIDATION.EMAIL_PATTERN.test(email);
+}
+
+/**
+ * Validate if a string matches URL pattern
+ * @param url - URL string to validate
+ * @returns True if URL format is valid
+ */
+export function isValidUrl(url: string): boolean {
+  return VALIDATION.URL_PATTERN.test(url);
+}
+
+/**
+ * Safely parse JSON with error handling
+ * @param json - JSON string to parse
+ * @param fallback - Fallback value if parsing fails
+ * @returns Parsed object or fallback
+ * @example
+ * safeJsonParse('{"a": 1}', {}) // returns { a: 1 }
+ * safeJsonParse('invalid', {}) // returns {}
+ */
+export function safeJsonParse<T>(json: string, fallback: T): T {
+  try {
+    return JSON.parse(json) as T;
+  } catch (error) {
+    console.warn("Failed to parse JSON:", error);
+    return fallback;
+  }
+}
+
+/**
+ * Truncate string to max length with ellipsis
+ * @param str - String to truncate
+ * @param maxLength - Maximum length
+ * @returns Truncated string with ellipsis if exceeds maxLength
+ * @example
+ * truncateString("hello world", 5) // returns "hello..."
+ * truncateString("hi", 5) // returns "hi"
+ */
+export function truncateString(str: string, maxLength: number): string {
+  if (str.length <= maxLength) return str;
+  return `${str.slice(0, maxLength)}...`;
 }
