@@ -5,7 +5,8 @@
       "Bash(pnpm lint:*)",
       "Bash(npm --version)",
       "Bash(npm run lint)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "SlashCommand(/speckit.specify Consolidate Phase 1 critical features: testing infrastructure, language translation, production bug fixes, README rewrite)"
     ],
     "deny": [],
     "ask": []
