@@ -18,8 +18,7 @@ import { CodeSandboxLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { DATA } from "@/lib/resume";
-
-const BLUR_FADE_DELAY = 0.04;
+import { ANIMATION } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -29,18 +28,18 @@ export default function Home() {
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
-                delay={BLUR_FADE_DELAY}
+                delay={ANIMATION.BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
                 text={`Čau, som ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY * 1.5}
+                delay={ANIMATION.BLUR_FADE_DELAY * 1.5}
                 text={DATA.description}
               />
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY * 2}>
+            <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 2}>
               <Avatar className="size-32 border">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
@@ -50,10 +49,10 @@ export default function Home() {
         </div>
       </section>
       <section id="about" className="mb-12">
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
+        <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 4}>
           <h2 className="text-xl font-bold mb-2">O mne</h2>
         </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
+        <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 4.5}>
           <div className="space-y-4">
             {DATA.summary.map((text, index) => (
               <Markdown
@@ -69,7 +68,7 @@ export default function Home() {
 
       <section id="projects">
         <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
+          <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 6}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
@@ -87,7 +86,7 @@ export default function Home() {
             </div>
           </BlurFade>
 
-          <BlurFade delay={BLUR_FADE_DELAY * 6.5}>
+          <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 6.5}>
             {DATA.projects.map((project, id) => (
               <div
                 key={`${project.title}-${project.dates}`}
@@ -160,7 +159,7 @@ export default function Home() {
 
       <section id="blog">
         <div className="space-y-12 w-full">
-          <BlurFade delay={BLUR_FADE_DELAY * 8.5}>
+          <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 8.5}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
@@ -179,7 +178,7 @@ export default function Home() {
             </div>
           </BlurFade>
           <div className="space-y-12 w-full pt-4 pb-12">
-            <BlurFade delay={BLUR_FADE_DELAY * 8.5}>
+            <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 8.5}>
               {DATA.featuredArticles.map((article, id) => (
                 <div key={article.slug}>
                   <BlogCard
@@ -203,7 +202,7 @@ export default function Home() {
 
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 10.5}>
+          <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 10.5}>
             <div className="space-y-2">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                 kontakt

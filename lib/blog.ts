@@ -3,12 +3,19 @@ import matter from "gray-matter";
 import path from "node:path";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
-import rehypeSanitize from "rehype-sanitize"; 
+import rehypeSanitize from "rehype-sanitize";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
-import { transformerCopyButton } from '@rehype-pretty/transformers'
+import { transformerCopyButton } from "@rehype-pretty/transformers";
 import type { Article, ArticleMetadata, FullArticle } from "@/lib/types";
+import { VALIDATION, CONTENT } from "@/lib/constants";
+import {
+  ValidationError,
+  FileSystemError,
+  ContentProcessingError,
+  logError,
+} from "@/lib/error-handler";
 
 const sanitizeSchema = {
   allowDuplicateAttributeNames: false,
@@ -43,32 +50,54 @@ const sanitizeSchema = {
   }
 };
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+/**
+ * Get all MDX files from a directory
+ * @throws FileSystemError if directory cannot be read
+ */
+function getMDXFiles(dir: string): string[] {
+  try {
+    return fs
+      .readdirSync(dir)
+      .filter((file) => path.extname(file) === CONTENT.MDX_EXTENSION);
+  } catch (error) {
+    logError(error, `Failed to read MDX files from ${dir}`);
+    throw new FileSystemError(`Cannot read content directory: ${dir}`);
+  }
 }
 
-export async function markdownToHTML(markdown: string) {
-  const p = await unified()
-  .use(remarkParse)
-  .use(remarkRehype) 
-    .use(rehypePrettyCode, {
-      theme: {
-        light: "one-dark-pro",
-        dark: "one-dark-pro",
-      },
-      transformers: [
-        transformerCopyButton({
-          visibility: 'always',
-          feedbackDuration: 3_000,
-        }),
-      ],
-      keepBackground: false,
-    })
-    .use(rehypeSanitize, sanitizeSchema)
-    .use(rehypeStringify)
-    .process(markdown);
+/**
+ * Convert markdown to sanitized HTML with syntax highlighting
+ * @param markdown - Raw markdown string
+ * @returns HTML string with syntax highlighting and sanitization
+ * @throws ContentProcessingError if markdown processing fails
+ */
+export async function markdownToHTML(markdown: string): Promise<string> {
+  try {
+    const p = await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypePrettyCode, {
+        theme: {
+          light: "one-dark-pro",
+          dark: "one-dark-pro",
+        },
+        transformers: [
+          transformerCopyButton({
+            visibility: "always",
+            feedbackDuration: 3_000,
+          }),
+        ],
+        keepBackground: false,
+      })
+      .use(rehypeSanitize, sanitizeSchema)
+      .use(rehypeStringify)
+      .process(markdown);
 
-  return p.toString();
+    return p.toString();
+  } catch (error) {
+    logError(error, "Failed to convert markdown to HTML");
+    throw new ContentProcessingError("Failed to process markdown content", error);
+  }
 }
 
 // Interface for the raw frontmatter data
@@ -84,66 +113,106 @@ interface RawFrontmatter {
   [key: string]: unknown;
 }
 
+/**
+ * Get a single blog post by slug
+ * @param slug - URL-friendly post identifier
+ * @returns FullArticle object or null if post not found
+ * @throws ValidationError if slug format is invalid
+ * @throws ContentProcessingError if markdown processing fails
+ * @throws FileSystemError if file cannot be read
+ */
 export async function getPost(slug: string): Promise<FullArticle | null> {
-  if (!slug || !/^[a-zA-Z0-9_-]+$/.test(slug)) {
-    throw new Error('Invalid slug format');
+  if (!slug || !VALIDATION.SLUG_PATTERN.test(slug)) {
+    throw new ValidationError(`Invalid slug format: ${slug}`);
   }
 
-  const filePath = path.join("content", `${slug}.mdx`);
+  try {
+    const filePath = path.join(CONTENT.CONTENT_DIR, `${slug}${CONTENT.MDX_EXTENSION}`);
 
-  if (!fs.existsSync(filePath)) {
-    return null;
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
+
+    const source = fs.readFileSync(filePath, "utf-8");
+    const { content: rawContent, data: rawMetadata } = matter(source);
+    const content = await markdownToHTML(rawContent);
+
+    // Safely parse and structure the metadata
+    const frontmatter = rawMetadata as RawFrontmatter;
+
+    const metadata: ArticleMetadata = {
+      title: frontmatter.title || "Untitled",
+      subtitle: frontmatter.subtitle,
+      publishedAt: frontmatter.publishedAt || new Date().toISOString(),
+      summary: frontmatter.summary,
+      image: frontmatter.image,
+      tags: Array.isArray(frontmatter.tags)
+        ? frontmatter.tags
+        : typeof frontmatter.tags === "string"
+          ? [frontmatter.tags]
+          : [],
+      published: frontmatter.published !== false, // Default to true unless explicitly false
+    };
+
+    return {
+      source: content,
+      metadata,
+      slug,
+    };
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      throw error;
+    }
+    logError(error, `Failed to process MDX for slug: ${slug}`);
+    throw new ContentProcessingError(
+      `Failed to process blog post: ${slug}`,
+      error
+    );
   }
-  
-  const source = fs.readFileSync(filePath, "utf-8");
-  const { content: rawContent, data: rawMetadata } = matter(source);
-  const content = await markdownToHTML(rawContent);
-  
-  // Safely parse and structure the metadata
-  const frontmatter = rawMetadata as RawFrontmatter;
-  
-  const metadata: ArticleMetadata = {
-    title: frontmatter.title || 'Untitled',
-    subtitle: frontmatter.subtitle,
-    publishedAt: frontmatter.publishedAt || new Date().toISOString(),
-    summary: frontmatter.summary,
-    image: frontmatter.image,
-    tags: Array.isArray(frontmatter.tags) 
-      ? frontmatter.tags 
-      : typeof frontmatter.tags === 'string' 
-        ? [frontmatter.tags] 
-        : [],
-    published: frontmatter.published !== false, // Default to true unless explicitly false
-  };
-  
-  return {
-    source: content,
-    metadata,
-    slug,
-  };
 }
 
+/**
+ * Get all published blog posts from a directory
+ * @param dir - Directory containing MDX files
+ * @returns Array of Article objects
+ */
 async function getAllPosts(dir: string): Promise<Article[]> {
-  const mdxFiles = getMDXFiles(dir);
-  const posts = await Promise.all(
-    mdxFiles.map(async (file) => {
-      const slug = path.basename(file, path.extname(file));
-      const post = await getPost(slug);
-      if (!post) return null;
-      
-      // Return Article without source for the list
-      return {
-        metadata: post.metadata,
-        slug: post.slug,
-        // Don't include source in the list for better performance
-      } as Article;
-    })
-  );
-  
-  // Filter out any null posts with proper typing
-  return posts.filter((post): post is Article => post !== null);
+  try {
+    const mdxFiles = getMDXFiles(dir);
+    const posts = await Promise.all(
+      mdxFiles.map(async (file) => {
+        const slug = path.basename(file, path.extname(file));
+        try {
+          const post = await getPost(slug);
+          if (!post) return null;
+
+          // Return Article without source for the list
+          return {
+            metadata: post.metadata,
+            slug: post.slug,
+            // Don't include source in the list for better performance
+          } as Article;
+        } catch (error) {
+          logError(error, `Failed to load post: ${slug}`);
+          return null;
+        }
+      })
+    );
+
+    // Filter out any null posts with proper typing
+    return posts.filter((post): post is Article => post !== null);
+  } catch (error) {
+    logError(error, "Failed to get all posts");
+    // Return empty array instead of crashing
+    console.warn("Using empty article list due to content loading error");
+    return [];
+  }
 }
 
+/**
+ * Get all published blog posts from the content directory
+ * @returns Array of Article objects, empty array if loading fails
+ */
 export async function getBlogPosts(): Promise<Article[]> {
-  return getAllPosts(path.join(process.cwd(), "content"));
+  return getAllPosts(path.join(process.cwd(), CONTENT.CONTENT_DIR));
 }

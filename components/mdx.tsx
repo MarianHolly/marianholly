@@ -3,14 +3,25 @@ import Link from "next/link";
 import Image from "next/image";
 import type { MDXComponents } from 'mdx/types';
 
-function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
+/**
+ * Table component for rendering data in MDX
+ * @param data - Object containing headers and rows arrays
+ * @returns HTML table element
+ */
+interface TableProps {
+  data: { headers: string[]; rows: string[][] };
+}
+
+function Table({ data }: TableProps): React.ReactElement {
   const headers = data.headers.map((header) => (
     <th key={`header-${header}`}>{header}</th>
   ));
   const rows = data.rows.map((row, rowIndex) => (
-    <tr key={`row-${rowIndex}-${row.join('-').slice(0, 20)}`}>
+    <tr key={`row-${rowIndex}-${row.join("-").slice(0, 20)}`}>
       {row.map((cell, cellIndex) => (
-        <td key={`cell-${rowIndex}-${cellIndex}-${cell.slice(0, 10)}`}>{cell}</td>
+        <td key={`cell-${rowIndex}-${cellIndex}-${cell.slice(0, 10)}`}>
+          {cell}
+        </td>
       ))}
     </tr>
   ));
@@ -25,6 +36,12 @@ function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   );
 }
 
+/**
+ * Smart link component that handles internal and external links
+ * Internal links: uses Next.js Link
+ * Anchor links: renders anchor tag
+ * External links: opens in new tab with security attributes
+ */
 function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const href = props.href;
 
@@ -43,33 +60,60 @@ function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
-function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement> & {
+/**
+ * Rounded image component with Next.js Image optimization
+ */
+interface RoundedImageProps
+  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, "width" | "height"> {
   src?: string;
   alt?: string;
   width?: number | string;
   height?: number | string;
-}) {
-  const { src, alt = "", width, height, className, ...restProps } = props;
-  
+}
+
+function RoundedImage({
+  src,
+  alt = "",
+  width,
+  height,
+  className,
+  ...restProps
+}: RoundedImageProps): React.ReactElement | null {
   if (!src) {
+    console.warn("RoundedImage: missing src attribute");
     return null;
   }
 
   // Convert props to the format Next.js Image expects
-  const imageProps = {
-    src,
-    alt,
-    className: `rounded-lg ${className || ''}`.trim(),
-    ...(width && { width: typeof width === 'string' ? Number.parseInt(width, 10) : width }),
-    ...(height && { height: typeof height === 'string' ? Number.parseInt(height, 10) : height }),
-    ...restProps
-  };
+  const imageWidth = width
+    ? typeof width === "string"
+      ? Number.parseInt(width, 10)
+      : width
+    : 800;
+  const imageHeight = height
+    ? typeof height === "string"
+      ? Number.parseInt(height, 10)
+      : height
+    : 400;
 
-  return <Image {...imageProps} />;
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={imageWidth}
+      height={imageHeight}
+      className={`rounded-lg ${className || ""}`.trim()}
+      {...restProps}
+    />
+  );
 }
 
-// This replaces rehype-slug
-function slugify(str: string) {
+/**
+ * Convert text to URL-friendly slug format
+ * @param str - Text to convert
+ * @returns Slugified string
+ */
+function slugify(str: string): string {
   return str
     .toString()
     .toLowerCase()
@@ -80,37 +124,46 @@ function slugify(str: string) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
-function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
+/**
+ * Create a heading component with anchor link support
+ * @param level - Heading level (1-6)
+ * @returns Heading component with automatic slug generation and anchor link
+ */
+function createHeading(
+  level: 1 | 2 | 3 | 4 | 5 | 6
+): React.ComponentType<React.HTMLAttributes<HTMLHeadingElement>> {
   const Heading = (props: React.HTMLAttributes<HTMLHeadingElement>) => {
     const { children, ...rest } = props;
     const slug = slugify(children?.toString() || "");
 
-    const sizeClasses = {
+    const sizeClasses: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
       1: "text-4xl font-bold",
       2: "text-3xl font-semibold",
       3: "text-2xl font-medium",
       4: "text-xl font-normal",
       5: "text-lg font-light",
-      6: "text-base font-light"
+      6: "text-base font-light",
     };
 
     return React.createElement(
       `h${level}`,
-      { 
-        id: slug, 
+      {
+        id: slug,
         className: sizeClasses[level],
-        ...rest
+        ...rest,
       },
       [
         React.createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
           className: "anchor",
+          "aria-label": `Link to ${slug}`,
         }),
       ],
       children
     );
   };
+
   Heading.displayName = `Heading${level}`;
   return Heading;
 }

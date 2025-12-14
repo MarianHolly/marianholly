@@ -8,6 +8,7 @@ import { Separator } from "./ui/separator";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import BlurFade from "./ui/blur-fade";
+import { ANIMATION, DEFAULTS } from "@/lib/constants";
 
 interface FilterContextType {
   filterPublished: boolean;
@@ -20,7 +21,7 @@ interface FilterContextType {
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
 
-export function useFilterContext() {
+export function useFilterContext(): FilterContextType {
   const context = useContext(FilterContext);
   if (context === undefined) {
     throw new Error("useFilterContext must be used within a FilterProvider");
@@ -32,28 +33,16 @@ interface ArticleFilterWrapperProps {
   children: ReactNode;
 }
 
-const BLUR_FADE_DELAY = 0.04;
-
 export default function ArticleFilterWrapper({
   children,
 }: ArticleFilterWrapperProps) {
   const [filterPublished, setFilterPublished] = useState(true);
   const [categoryFilter, setCategoryFilter] = useState("");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">(DEFAULTS.SORT_ORDER);
 
-  // const resetFilters = () => {
-  //   setFilterPublished(true);
-  //   setCategoryFilter("");
-  //   setSortOrder("desc");
-  // };
-
-  const toggleFilter = () => {
+  const toggleFilter = (): void => {
     setFilterPublished((prev) => !prev);
   };
-
-  // const toggleSortOrder = () => {
-  //   setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-  // };
 
   return (
     <FilterContext.Provider
@@ -67,7 +56,7 @@ export default function ArticleFilterWrapper({
       }}
     >
       <div className="w-full">
-        <BlurFade delay={BLUR_FADE_DELAY}>
+        <BlurFade delay={ANIMATION.BLUR_FADE_DELAY}>
           <div className="w-full flex flex-row justify-between">
             <h1 className="text-3xl font-bold">Articles</h1>
             <div className="flex flex-row gap-1">

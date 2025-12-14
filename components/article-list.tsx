@@ -10,12 +10,11 @@ import { Button } from "./ui/button";
 import { TIcons } from "./icons";
 import { Separator } from "./ui/separator";
 import BlurFade from "./ui/blur-fade";
+import { ANIMATION } from "@/lib/constants";
 
 interface ArticleListProps {
   articles: Article[];
 }
-
-const BLUR_FADE_DELAY = 0.04;
 
 export default function ArticleList({ articles }: ArticleListProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -58,7 +57,7 @@ export default function ArticleList({ articles }: ArticleListProps) {
 
   return (
     <div>
-      <BlurFade delay={BLUR_FADE_DELAY}>
+      <BlurFade delay={ANIMATION.BLUR_FADE_DELAY}>
         <div className="flex flex-row justify-end mb-4">
           <div className="flex flex-wrap gap-1">
             {categories.map((category) => {
@@ -89,7 +88,7 @@ export default function ArticleList({ articles }: ArticleListProps) {
         <Separator orientation="horizontal" className="h-full" />
       </BlurFade>
 
-      <BlurFade delay={BLUR_FADE_DELAY + 0.12}>
+      <BlurFade delay={ANIMATION.BLUR_FADE_DELAY + ANIMATION.STAGGER_DELAY}>
         <ul className="space-y-2">
           {sortedAndFilteredArticles.map((article, id) => (
             <div
