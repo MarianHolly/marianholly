@@ -37,3 +37,8 @@ next-env.d.ts
 
 # components backup
 backup
+
+# working folders
+.claude
+.prototypes
+.specify
