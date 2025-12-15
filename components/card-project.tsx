@@ -3,21 +3,8 @@
 import { useRef, useEffect, useState } from "react";
 import VideoPlayerControls from "./video-controls";
 
-interface ProjectLink {
-  type: string;
-  href: string;
-  icon: React.ReactNode;
-}
-
 interface ProjectCardProps {
-  title: string;
   href: string;
-  dates: string;
-  active: boolean;
-  description: string;
-  technologies: string[];
-  links?: ProjectLink[];
-  image?: string;
   video?: string;
 }
 
