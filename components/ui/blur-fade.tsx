@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import type { UseInViewOptions, Variants } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type MarginType = UseInViewOptions["margin"];
 
@@ -35,6 +36,7 @@ export default function BlurFade({
   const ref = useRef(null);
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!hasAnimated && (!inView || inViewResult)) {
@@ -47,6 +49,11 @@ export default function BlurFade({
     visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
   };
   const combinedVariants = variant || defaultVariants;
+
+  // Respect user's motion preference
+  const animationDuration = prefersReducedMotion ? 0.01 : duration;
+  const animationDelay = prefersReducedMotion ? 0 : 0.04 + delay;
+
   return (
     <AnimatePresence>
       <motion.div
@@ -56,8 +63,8 @@ export default function BlurFade({
         exit="hidden"
         variants={combinedVariants}
         transition={{
-          delay: 0.04 + delay,
-          duration,
+          delay: animationDelay,
+          duration: animationDuration,
           ease: "easeOut",
         }}
         className={className}

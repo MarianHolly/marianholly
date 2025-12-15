@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useMemo } from "react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface BlurFadeTextProps {
   text: string;
@@ -26,12 +27,17 @@ const BlurFadeText = ({
   yOffset = 8,
   animateByCharacter = false,
 }: BlurFadeTextProps) => {
+  const prefersReducedMotion = useReducedMotion();
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: "blur(8px)" },
     visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
   };
   const combinedVariants = variant || defaultVariants;
   const characters = useMemo(() => Array.from(text), [text]);
+
+  // Respect user's motion preference
+  const effectiveCharacterDelay = prefersReducedMotion ? 0 : characterDelay;
+  const effectiveDelay = prefersReducedMotion ? 0 : delay;
 
   if (animateByCharacter) {
     return (
@@ -46,7 +52,7 @@ const BlurFadeText = ({
               variants={combinedVariants}
               transition={{
                 yoyo: Number.POSITIVE_INFINITY,
-                delay: delay + i * characterDelay,
+                delay: effectiveDelay + i * effectiveCharacterDelay,
                 ease: "easeOut",
               }}
               className={cn("inline-block", className)}
@@ -70,7 +76,7 @@ const BlurFadeText = ({
           variants={combinedVariants}
           transition={{
             yoyo: Number.POSITIVE_INFINITY,
-            delay,
+            delay: effectiveDelay,
             ease: "easeOut",
           }}
           className={cn("inline-block", className)}
