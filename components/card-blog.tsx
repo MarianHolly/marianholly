@@ -19,15 +19,20 @@ export default function BlogCard({
   slug: string;
 }) {
   const [hoveredIndex, setHoveredIndex] = useState<string | number | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState<string | number | null>(null);
+
+  const isVisibleIndex = hoveredIndex ?? focusedIndex;
 
   return (
     <div
       className="relative"
       onMouseEnter={() => setHoveredIndex(id)}
       onMouseLeave={() => setHoveredIndex(null)}
+      onFocus={() => setFocusedIndex(id)}
+      onBlur={() => setFocusedIndex(null)}
     >
       <AnimatePresence>
-        {hoveredIndex === id && (
+        {isVisibleIndex === id && (
           <motion.span
             className="absolute inset-0 h-full w-full bg-slate-100 dark:bg-slate-800/[0.8] block rounded-xl"
             layoutId="hoverBackground"
@@ -44,7 +49,7 @@ export default function BlogCard({
         )}
       </AnimatePresence>
       <div className="w-full flex flex-row relative justify-start gap-4 p-1 rounded-sm">
-        <Link className="w-full" href={`/blog/${slug}`}>
+        <Link className="w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg" href={`/blog/${slug}`}>
           <Card className="flex flex-row items-start">
             <div className="hidden min-w-32 sm:flex flex-row items-center justify-start pl-1">
               <p className="text-sm font-light opacity-80">

@@ -15,6 +15,9 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function GitHubRepositories() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
+  const isVisibleIndex = hoveredIndex ?? focusedIndex;
 
   return (
     <div className="space-y-12 w-full py-12">
@@ -45,9 +48,11 @@ export default function GitHubRepositories() {
                 className="relative"
                 onMouseEnter={() => setHoveredIndex(id)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onFocus={() => setFocusedIndex(id)}
+                onBlur={() => setFocusedIndex(null)}
               >
                 <AnimatePresence>
-                  {hoveredIndex === id && (
+                  {isVisibleIndex === id && (
                     <motion.span
                       className="absolute inset-0 h-full w-full bg-slate-100 dark:bg-slate-800/[0.8] block rounded-xl"
                       layoutId="hoverBackground"
@@ -65,13 +70,13 @@ export default function GitHubRepositories() {
                 </AnimatePresence>
 
                 <div className="w-full flex flex-row relative justify-start gap-4 md:p-2 rounded-md">
-                  <Card isHovered={hoveredIndex === id}>
+                  <Card isHovered={isVisibleIndex === id}>
                     <div className="w-24 md:w-32 flex items-center justify-center pl-3 flex-row gap-3">
                       <Link href={repo.githubHref} target="_blank" rel="noopener noreferrer">
                         <Button
                           variant="outline"
                           size="icon"
-                          className="rounded-full"
+                          className="rounded-full focus-visible:ring-2 focus-visible:ring-offset-2"
                         >
                           <GitHubLogoIcon />
                         </Button>
@@ -82,7 +87,7 @@ export default function GitHubRepositories() {
                           <Button
                             variant="outline"
                             size="icon"
-                            className="rounded-full"
+                            className="rounded-full focus-visible:ring-2 focus-visible:ring-offset-2"
                           >
                             <CodeSandboxLogoIcon />
                           </Button>
@@ -109,7 +114,7 @@ export default function GitHubRepositories() {
                     </div>
 
                     <AnimatePresence>
-                      {hoveredIndex === id && (
+                      {isVisibleIndex === id && (
                         <motion.div
                           className="absolute right-0 top-0 -mt-24 -mr-4"
                           initial={{ height: 0, opacity: 0, scale: 0.3 }}
@@ -126,6 +131,7 @@ export default function GitHubRepositories() {
                             width={300}
                             height={200}
                             quality={100}
+                            loading="lazy"
                             alt="repo image"
                             className="rounded-lg shadow-lg"
                           />
