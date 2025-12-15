@@ -7,11 +7,11 @@ export const DATA = {
   url: "https://marianholly.vercel.app",
   avatarUrl: "/avatar.jpg",
   description:
-    "Front-end developer, samouk - React, Nextjs... Momentálne sa učím Python a Django. Minimalizmus v dizajne aj sociálnych sieťach.",
+    "Front-end developer, self-taught - React, Next.js. Currently learning Python and Django. Minimalist approach to design and social media.",
   summary: [
-    "**JavaScript** ma priviedol k **Reactu**, ktorý rád kombinujem s *Typescriptom*, kde sa venujem tvorbe interaktívnych aplikácií. Baví ma dizajnovať s *Tailwind CSS* a *ShadcnUI*. Zaujímajú ma aj frameworky ako **Next.js, Astro** či **Vue**, ktoré skúmam, aby som rozšíril svoje zručnosti.",
-    "**Python** študujem na [Software Development Academy](https://sdacademy.sk/kurzy/python/), kde som zvládol základy aj pokročilejšie témy, testovanie aj OOP. Skúšam **Django** a čakajú ma **SQL** a dátové štruktúry. Svoje pokroky dokumentujem v článkoch.",    
-    "Hľadám príležitosť ponoriť sa do reálneho vývoja na skutočných projektoch. Chcem rásť ako programátor, naberať skúsenosti a zároveň priniesť hodnotu tímu, v ktorom budem vidieť výsledky svojej práce."
+    "**JavaScript** introduced me to **React**, which I love combining with *TypeScript* to build interactive applications. I enjoy designing with *Tailwind CSS* and *Shadcn UI*. I'm also interested in frameworks like **Next.js, Astro**, and **Vue**, which I'm exploring to expand my skills.",
+    "I'm studying **Python** at [Software Development Academy](https://sdacademy.sk/kurzy/python/), where I've mastered fundamental concepts and advanced topics including testing and OOP. I'm experimenting with **Django** and learning **SQL** and data structures. I document my progress through technical articles.",
+    "I'm seeking an opportunity to dive into real-world development on production projects. I want to grow as a developer, gain experience, and contribute value to a team where I can see the impact of my work."
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -83,30 +83,30 @@ export const DATA = {
     {
       title: "Todo List",
       description:
-        "Porovnaj rôzne spôsoby správy stavu v Reacte (hooks, Zustand, Redux Toolkit) na jednoduchom príklade zoznamu úloh.",
+        "Compare different state management approaches in React (hooks, Zustand, Redux Toolkit) using a simple todo list example.",
       githubHref: "https://github.com/MarianHolly/todo-list/tree/5-Zustand",
       websiteHref: "https://todo-list-8b2y.vercel.app/",
       image:
         "https://raw.githubusercontent.com/MarianHolly/todo-list/refs/heads/5-Zustand/public/todo-list.png",
-      dates: "Marec 3 - April 12, 2024",
+      dates: "March 3 - April 12, 2024",
     },
     {
       title: "Endless Runner",
-      description: "Krok-za-krokom návod na vytvorenie pixelovej hry s Pygame.",
+      description: "Step-by-step guide to building a pixel-based game with Pygame.",
       githubHref: "https://github.com/MarianHolly/endless-runner",
       image:
         "https://raw.githubusercontent.com/MarianHolly/endless-runner/refs/heads/main/endless-runner-1.png",
-      dates: "Oktover 12 - November 4, 2024",
+      dates: "October 12 - November 4, 2024",
     },
   ],
   featuredArticles: [
     {
-      title: "Python a OOP: Kompletný sprievodca pre programátorov",
+      title: "Python and OOP: A Complete Guide for Developers",
       subtitle:
-        "Podrobný sprievodca OOP v Pythone, ktorý zahŕňa základné koncepty aj pokročilé témy, ako sú abstrakcia, polymorfizmus a metaklasy",
+        "A detailed guide to Object-Oriented Programming in Python, covering fundamental concepts and advanced topics like abstraction, polymorphism, and metaclasses",
       publishedAt: "2024-09-22",
       summary:
-        "Zisti, ako zvládnuť objektovo orientované programovanie (OOP) v Pythone od základov až po pokročilé techniky. Tento článok ponúka komplexný prehľad všetkého, čo potrebuješ vedieť na dosiahnutie excelentnej úrovne ako programátor.",
+        "Learn how to master Object-Oriented Programming (OOP) in Python from basics to advanced techniques. This article provides a comprehensive overview of everything you need to know to achieve excellence as a programmer.",
       slug: "object-oriented-programming",
     },
   ],

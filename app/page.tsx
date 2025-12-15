@@ -31,7 +31,7 @@ export default function Home() {
                 delay={ANIMATION.BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
-                text={`Čau, som ${DATA.name.split(" ")[0]}`}
+                text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
@@ -50,7 +50,7 @@ export default function Home() {
       </section>
       <section id="about" className="mb-12">
         <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 4}>
-          <h2 className="text-xl font-bold mb-2">O mne</h2>
+          <h2 className="text-xl font-bold mb-2">About Me</h2>
         </BlurFade>
         <BlurFade delay={ANIMATION.BLUR_FADE_DELAY * 4.5}>
           <div className="space-y-4">
@@ -72,15 +72,14 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  webové aplikácie
+                  Web Applications
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  nedávne vybrané projekty
+                  Recent Featured Projects
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Objav moju vášeň pre tvorbu interaktívnych a užívateľsky
-                  prívetivých webových zážitkov. Tu je niekoľko mojich
-                  obľúbených.
+                  Explore my passion for creating interactive and user-friendly
+                  web experiences. Here are some of my favorite projects.
                 </p>
               </div>
             </div>
@@ -112,37 +111,25 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="flex flex-row space-x-2 justify-center">
-                    <Link href={project.githubHref} passHref legacyBehavior>
-                      <a
-                        href={project.githubHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link href={project.githubHref} target="_blank" rel="noopener noreferrer">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-xl w-16 p-0"
                       >
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="rounded-xl w-16 p-0"
-                        >
-                          <GitHubLogoIcon className="h-5 w-5" />
-                        </Button>
-                      </a>
+                        <GitHubLogoIcon className="h-5 w-5" />
+                      </Button>
                     </Link>
 
                     {project.websiteHref && (
-                      <Link href={project.websiteHref} passHref legacyBehavior>
-                        <a
-                          href={project.githubHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                      <Link href={project.websiteHref} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="rounded-xl w-16"
                         >
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="rounded-xl w-16"
-                          >
-                            <CodeSandboxLogoIcon className="h-5 w-5" />
-                          </Button>
-                        </a>
+                          <CodeSandboxLogoIcon className="h-5 w-5" />
+                        </Button>
                       </Link>
                     )}
                   </div>
@@ -163,16 +150,16 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  blogové články
+                  Blog Articles
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  zdieľam, čo sa učím
+                  Sharing What I Learn
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Ponorte sa do môjho blogu, kde zdieľam svoje poznatky z
-                  webového vývoja, od praktických návodov po tipy a triky pre
-                  front-end technológie ako React, Next.js a dizajnové nástroje
-                  ako Tailwind CSS a Shadcn UI.
+                  Dive into my blog where I share insights on web development,
+                  from practical tutorials to tips and tricks for front-end
+                  technologies like React, Next.js and design tools like
+                  Tailwind CSS and Shadcn UI.
                 </p>
               </div>
             </div>

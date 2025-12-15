@@ -22,16 +22,16 @@ export default function GitHubRepositories() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-              GitHub repozitáre
+              GitHub Projects
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              neustále niečo kódujem
+              Always coding something new
             </h2>
             <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Preskúmaj moju cestu kódenia cez rôznorodú zbierku projektov, od
-              malých experimentov až po plnohodnotné aplikácie postavené rôznymi
-              technologiami React, Next.js, Typescript, Astro, Sanity,
-              Contentful, Python, Django, Flask, Pygame.
+              Explore my coding journey through a diverse collection of projects, from
+              small experiments to full-featured applications built with various
+              technologies including React, Next.js, TypeScript, Astro, Sanity,
+              Contentful, Python, Django, Flask, and Pygame.
             </p>
           </div>
         </div>
@@ -67,29 +67,25 @@ export default function GitHubRepositories() {
                 <div className="w-full flex flex-row relative justify-start gap-4 md:p-2 rounded-md">
                   <Card isHovered={hoveredIndex === id}>
                     <div className="w-24 md:w-32 flex items-center justify-center pl-3 flex-row gap-3">
-                      <Link href={repo.githubHref} passHref legacyBehavior>
-                        <a href={repo.githubHref} target="_blank" rel="noopener noreferrer">
+                      <Link href={repo.githubHref} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="rounded-full"
+                        >
+                          <GitHubLogoIcon />
+                        </Button>
+                      </Link>
+
+                      {repo.websiteHref && (
+                        <Link href={repo.websiteHref} target="_blank" rel="noopener noreferrer">
                           <Button
                             variant="outline"
                             size="icon"
                             className="rounded-full"
                           >
-                            <GitHubLogoIcon />
+                            <CodeSandboxLogoIcon />
                           </Button>
-                        </a>
-                      </Link>
-
-                      {repo.websiteHref && (
-                        <Link href={repo.websiteHref} passHref legacyBehavior>
-                          <a href={repo.githubHref} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              className="rounded-full"
-                            >
-                              <CodeSandboxLogoIcon />
-                            </Button>
-                          </a>
                         </Link>
                       )}
                     </div>
