@@ -1,5 +1,7 @@
 # Marian Holly - Full-Stack Developer Portfolio
 
+[![CI](https://github.com/marianholly/marianholly/actions/workflows/ci.yml/badge.svg)](https://github.com/marianholly/marianholly/actions/workflows/ci.yml)
+
 A modern, performant portfolio website built with Next.js 14, React 18, TypeScript, and Tailwind CSS. Showcasing projects, blog articles, and technical expertise with production-grade code quality and comprehensive test coverage.
 
 **Live Site:** [https://marianholly.vercel.app](https://marianholly.vercel.app)
