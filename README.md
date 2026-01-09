@@ -1,31 +1,45 @@
-## Full-Stack Developer | Python & JavaScript Ecosystem 
+## Full-Stack Developer | Applied Informatics Student at UCM
+**Building modern web solutions with a focus on Frontend & Python ecosystems.**
+
+---
 
 ### About Me
-I'm a self-taught frontend developer who has expanded into full-stack development through structured learning and hands-on experience. My journey began with JavaScript, React, and Next.js, and I've since completed formal training in Python, SQL, and Django. Currently, I'm actively seeking junior developer opportunities where I can apply my skills while continuing to grow professionally.
+I am a dedicated developer currently pursuing a degree in **Applied Informatics at the University of Ss. Cyril and Methodius in Trnava**. My journey into tech is fueled by a transition from a high-precision background in Dental Technology, which has instilled in me a meticulous eye for detail and a structured approach to problem-solving.
 
-My approach to development focuses on building solid foundations in key technologies while progressively expanding my expertise across the full development stack.
+I am a **self-taught Frontend specialist** who has evolved into a **certified Python/Full-Stack Developer**. I enjoy building clean, performant web applications and I am increasingly drawn to the analytical side of development, specifically SQL optimization and data processing.
 
-### Technical Proficiencies
-- **Programming Languages**: Python (course-certified)
-- **Frontend Development**: JavaScript (self-taught), React, Next.js, TypeScript, Tailwind CSS
-- **Backend Development**: Django, Next.js, Django REST Framework
+* **Education:** University of Ss. Cyril and Methodius (Applied Informatics)
+* **Professional Goal:** To secure a Junior role where I can grow my skills while contributing to data-driven or AI-integrated solutions.
+* **Adaptability:** Ready to excel as a **Junior Developer**, **QA Tester**, or **Data Analyst**.
+* **Location:** Slovakia (Open to Remote / Hybrid / On-site in TT, BA, and surroundings)
 
-#### Data Analysis
-- **Current**: SQL optimization and database operations
-- **Learning**: Pandas for data manipulation, planning Matplotlib and Seaborn for visualization
+---
 
-#### Future Specialization
-Working toward machine learning and deep learning as the next major development phase.
+### Technical Toolbox
 
-<hr />
+| Category | Technologies |
+| :--- | :--- |
+| **Frontend** | JavaScript (ES6+), React, Next.js, Astro, TypeScript, Tailwind CSS |
+| **Backend** | Python (Certified), Django, Django REST Framework, FastAPI |
+| **Data & DB** | SQL (PostgreSQL/MySQL), CSV Parsing & Data Manipulation |
+| **Learning Path** | Pandas, Matplotlib, Deep Learning Fundamentals |
 
-### 🌐 Professional Contact Information
+---
 
-- **LinkedIn:** [Marian Holly](https://www.linkedin.com/in/marian-holly-291b62306/)
-- **Email:** [marian.holly7117@gmail.com](mailto:marian.holly7117@gmail.com)
-- **Portfolio:** [https://marian-holly.vercel.app/]
-- **Kaggle:** [https://www.kaggle.com/marinholl]
-- **Location:** Slovakia 🇸🇰 | Open to Remote Opportunities
+### Featured Projects
 
-### Availability
-Open to junior developer positions that offer opportunities for continued growth in full-stack development, with particular interest in roles that incorporate data analysis and emerging AI technologies.
+#### ✅ Finished & Deployed
+* **[Letterboxd Stats](https://your-link-here.com)** – Professional analytics interface with integrated **CSV file parsing** and dynamic data rendering.
+* **[Django Blog Platform](https://your-link-here.com)** – Robust backend architecture focusing on security, user authentication, and content management.
+
+#### ⏳ In Progress
+* **Astro Buddhist Community Web** – High-performance static site with a focus on optimized Core Web Vitals.
+* **Dog Shelter Management System** – Project dedicated to CRUD operations and gallery management for animal adoption.
+* **E-commerce Platform** – Full-stack application focusing on complex state management and payment integration.
+
+---
+
+## Let's Connect
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marian-holly-291b62306/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat-square&logo=vercel&logoColor=white)](https://marian-holly.vercel.app/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:marian.holly7117@gmail.com)
