@@ -25,11 +25,11 @@ description: "Phase 2 Professional Polish task list for CI/CD, TypeScript, Perfo
 **Purpose**: Verify Phase 1 completion before starting Phase 2
 **GATE**: Must pass before proceeding to Phase 1
 
-- [ ] T001 [Foundation] Verify Phase 1 complete: `pnpm test` passes with 30%+ coverage
-- [ ] T002 [Foundation] Verify Phase 1 complete: `pnpm lint` passes with zero ESLint errors
-- [ ] T003 [Foundation] Verify Phase 1 complete: `pnpm build` succeeds with zero TypeScript errors
-- [ ] T004 [Foundation] Verify Phase 1 complete: Live site at marianholly.vercel.app loads without console errors
-- [ ] T005 [Foundation] Verify Phase 1 complete: All content is 100% English (no Slovak text visible)
+- [x] T001 [Foundation] Verify Phase 1 complete: `pnpm test` passes with 30%+ coverage
+- [x] T002 [Foundation] Verify Phase 1 complete: `pnpm lint` passes with zero ESLint errors
+- [x] T003 [Foundation] Verify Phase 1 complete: `pnpm build` succeeds with zero TypeScript errors
+- [x] T004 [Foundation] Verify Phase 1 complete: Live site at marianholly.vercel.app loads without console errors
+- [x] T005 [Foundation] Verify Phase 1 complete: All content is 100% English (no Slovak text visible)
 
 **Checkpoint**: Phase 1 fully complete; ready for Phase 2 work
 
@@ -40,16 +40,16 @@ description: "Phase 2 Professional Polish task list for CI/CD, TypeScript, Perfo
 **Purpose**: Implement automated quality checks on every push/PR
 **GATE**: Must complete before other Phase 2 work (all subsequent work benefits from CI)
 
-- [ ] T006 [P] [CI/CD] Create `.github/workflows/ci.yml` with job structure for lint, test, build
-- [ ] T007 [P] [CI/CD] Configure lint job in ci.yml: runs `pnpm lint`, fails on ESLint errors, timeout 10m
-- [ ] T008 [P] [CI/CD] Configure test job in ci.yml: runs `pnpm test`, fails on test failures, timeout 10m
-- [ ] T009 [P] [CI/CD] Configure build job in ci.yml: runs `pnpm build`, fails on TypeScript errors, timeout 10m
-- [ ] T010 [CI/CD] Setup pnpm caching in ci.yml: cache pnpm modules and store (saves time in subsequent runs)
-- [ ] T011 [CI/CD] Configure workflow triggers in ci.yml: runs on `push` to main and all PRs, add manual trigger option
+- [x] T006 [P] [CI/CD] Create `.github/workflows/ci.yml` with job structure for lint, test, build
+- [x] T007 [P] [CI/CD] Configure lint job in ci.yml: runs `pnpm lint`, fails on ESLint errors, timeout 10m
+- [x] T008 [P] [CI/CD] Configure test job in ci.yml: runs `pnpm test`, fails on test failures, timeout 10m
+- [x] T009 [P] [CI/CD] Configure build job in ci.yml: runs `pnpm build`, fails on TypeScript errors, timeout 10m
+- [x] T010 [CI/CD] Setup pnpm caching in ci.yml: cache pnpm modules and store (saves time in subsequent runs)
+- [x] T011 [CI/CD] Configure workflow triggers in ci.yml: runs on `push` to main and all PRs, add manual trigger option
 - [ ] T012 [CI/CD] Verify workflow file is valid: push to feature branch and check GitHub Actions tab for successful run
 - [ ] T013 [CI/CD] Verify all jobs complete in under 3 minutes: check workflow run times in GitHub Actions UI
 - [ ] T014 [CI/CD] Configure branch protection rules: require all status checks passing before PR merge
-- [ ] T015 [CI/CD] Add build status badge to README.md: add GitHub Actions workflow status badge in header
+- [x] T015 [CI/CD] Add build status badge to README.md: add GitHub Actions workflow status badge in header
 - [ ] T016 [CI/CD] Test CI blocking PR merge: create PR with intentional lint/test/build failure, verify merge blocked
 - [ ] T017 [CI/CD] Test CI unblocking PR merge: fix the failure, verify PR now shows passing checks
 
@@ -62,14 +62,14 @@ description: "Phase 2 Professional Polish task list for CI/CD, TypeScript, Perfo
 **Purpose**: Enable strict mode and define clear types throughout codebase
 **Dependencies**: Requires Phase 1 CI/CD (CI will validate TypeScript in subsequent phases)
 
-- [ ] T018 [P] [TypeScript] Enable TypeScript strict mode in `tsconfig.json`: set `"strict": true`
-- [ ] T019 [P] [TypeScript] Enable all strictness flags in `tsconfig.json`:
+- [x] T018 [P] [TypeScript] Enable TypeScript strict mode in `tsconfig.json`: set `"strict": true`
+- [x] T019 [P] [TypeScript] Enable all strictness flags in `tsconfig.json`:
   - `"noImplicitAny": true`
   - `"strictNullChecks": true`
   - `"strictFunctionTypes": true`
   - `"noImplicitThis": true`
-- [ ] T020 [TypeScript] Run `pnpm build` and identify any TypeScript errors introduced by strict mode
-- [ ] T021 [TypeScript] Fix all TypeScript errors in source code (should be minimal from Phase 1)
+- [x] T020 [TypeScript] Run `pnpm build` and identify any TypeScript errors introduced by strict mode
+- [x] T021 [TypeScript] Fix all TypeScript errors in source code (should be minimal from Phase 1)
 - [ ] T022 [P] [TypeScript] Create/review `lib/types.ts` with centralized type definitions:
   - `type Article` (blog post with metadata)
   - `type ArticleMetadata` (title, date, tags, summary, etc.)

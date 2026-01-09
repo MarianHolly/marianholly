@@ -8,7 +8,9 @@
       "Bash(npx tsc:*)",
       "SlashCommand(/speckit.specify Consolidate Phase 1 critical features: testing infrastructure, language translation, production bug fixes, README rewrite)",
       "Bash(pnpm install:*)",
-      "Bash(npx vitest:*)"
+      "Bash(npx vitest:*)",
+      "Bash(pnpm test:coverage:*)",
+      "Bash(pnpm build:*)"
     ],
     "deny": [],
     "ask": []
