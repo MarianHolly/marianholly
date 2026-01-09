@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, 02-polishing]
   pull_request:
     branches: [main]
   workflow_dispatch: # Allow manual trigger
