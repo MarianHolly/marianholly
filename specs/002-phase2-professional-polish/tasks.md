@@ -46,8 +46,8 @@ description: "Phase 2 Professional Polish task list for CI/CD, TypeScript, Perfo
 - [x] T009 [P] [CI/CD] Configure build job in ci.yml: runs `pnpm build`, fails on TypeScript errors, timeout 10m
 - [x] T010 [CI/CD] Setup pnpm caching in ci.yml: cache pnpm modules and store (saves time in subsequent runs)
 - [x] T011 [CI/CD] Configure workflow triggers in ci.yml: runs on `push` to main and all PRs, add manual trigger option
-- [ ] T012 [CI/CD] Verify workflow file is valid: push to feature branch and check GitHub Actions tab for successful run
-- [ ] T013 [CI/CD] Verify all jobs complete in under 3 minutes: check workflow run times in GitHub Actions UI
+- [x] T012 [CI/CD] Verify workflow file is valid: push to feature branch and check GitHub Actions tab for successful run
+- [x] T013 [CI/CD] Verify all jobs complete in under 3 minutes: check workflow run times in GitHub Actions UI
 - [ ] T014 [CI/CD] Configure branch protection rules: require all status checks passing before PR merge
 - [x] T015 [CI/CD] Add build status badge to README.md: add GitHub Actions workflow status badge in header
 - [ ] T016 [CI/CD] Test CI blocking PR merge: create PR with intentional lint/test/build failure, verify merge blocked
