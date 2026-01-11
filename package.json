@@ -10,7 +10,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "analyze": "ANALYZE=true pnpm build"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.1",
@@ -54,6 +55,7 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.6.1",

@@ -1,3 +1,9 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
@@ -13,7 +19,7 @@ const nextConfig = {
           protocol: "https",
           hostname: "api.microlink.io",
         },{
-          protocol: "https",  
+          protocol: "https",
           hostname: "magicui.design",
         },{
           protocol: "https", hostname: "api.microlink.io"
@@ -27,7 +33,7 @@ const nextConfig = {
       ],
     }
   };
-  
-  export default nextConfig;
+
+  export default withBundleAnalyzer(nextConfig);
   
   
