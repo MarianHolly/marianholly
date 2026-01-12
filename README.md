@@ -29,7 +29,7 @@ I am a **self-taught Frontend specialist** who has evolved into a **certified Py
 ### Featured Projects
 
 #### ✅ Finished & Deployed
-* **[Letterboxd Stats](https://your-link-here.com)** – Professional analytics interface with integrated **CSV file parsing** and dynamic data rendering.
+* **[Letterboxd Stats]([https://your-link-here.com](https://letterboxd-stats-zeta.vercel.app/))** – Professional analytics interface with integrated **CSV file parsing** and dynamic data rendering.
 * **[Django Blog Platform](https://your-link-here.com)** – Robust backend architecture focusing on security, user authentication, and content management.
 
 #### ⏳ In Progress
