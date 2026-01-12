@@ -100,7 +100,7 @@ description: "Phase 2 Professional Polish task list for CI/CD, TypeScript, Perfo
 **Purpose**: Generate and document actual performance evidence
 **Dependencies**: Independent (can run in parallel with Phase 2 if desired)
 
-- [ ] T032 [P] [Performance] Create `.github/performance/` directory for storing performance evidence
+- [x] T032 [P] [Performance] Create `.github/performance/` directory for storing performance evidence
 - [ ] T033 [Performance] Run Lighthouse audit for desktop:
   - Open marianholly.vercel.app in Chrome
   - DevTools → Lighthouse
@@ -127,11 +127,12 @@ description: "Phase 2 Professional Polish task list for CI/CD, TypeScript, Perfo
   - Enter marianholly.vercel.app URL
   - Record LCP, FID, CLS values
   - Document in `.github/performance/core-web-vitals.md`
-- [ ] T037 [P] [Performance] Install @next/bundle-analyzer: `pnpm add -D @next/bundle-analyzer`
-- [ ] T038 [Performance] Configure bundle analyzer in `next.config.js`:
+- [x] T037 [P] [Performance] Install @next/bundle-analyzer: `pnpm add -D @next/bundle-analyzer`
+- [x] T038 [Performance] Configure bundle analyzer in `next.config.js`:
   - Import withBundleAnalyzer
   - Wrap Next.js config with analyzer
   - Configure to run when ANALYZE=true env var set
+  - Added `pnpm analyze` script to package.json
 - [ ] T039 [Performance] Generate bundle analysis:
   - Run `ANALYZE=true pnpm build`
   - Review output showing JS chunk sizes
